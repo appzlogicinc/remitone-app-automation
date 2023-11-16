@@ -1,0 +1,11 @@
+[90m2023-11-16T08:34:59.285Z[39m [96mINFO[39m [97m@wdio/browserstack-service[39m Using app: bs://8b372ad161dd373c421a1222d33c0dc994dca121
+[90m2023-11-16T08:34:59.285Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Sending launch start event
+[90m2023-11-16T08:35:00.525Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m [Start_Build] Success response: {"build_hashed_id":"36xpovlusrqs17hlgpllb3erpry3h9shbbqcoafo","jwt":"eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJicm93c2Vyc3RhY2tfb2IiLCJzdWIiOiI3OTUyMjAyIiwiZ3JvdXBfaWQiOjc4NTk3OTUsInVzZXJfaWQiOjc5NTIyMDIsImJ1aWxkX2hhc2hlZF9pZCI6IjM2eHBvdmx1c3JxczE3aGxncGxsYjNlcnByeTNoOXNoYmJxY29hZm8iLCJwcm9qZWN0X25hbWUiOiJZb3VyIHByb2plY3QgbmFtZSBnb2VzIGhlcmUiLCJob29rX2FzX3Rlc3QiOiIxIiwiaWF0IjoxNzAwMTIzNzAwLCJleHAiOjE3MDA0NjkzMDB9.IilRshJRu1aHVV1UBM3hzeP3gQe91jvBhZHW0DJ7nBs","allow_screenshots":true}
+[90m2023-11-16T08:35:00.525Z[39m [96mINFO[39m [97m@wdio/browserstack-service[39m browserstackLocal is not enabled - skipping...
+[90m2023-11-16T08:35:05.458Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Inside OnComplete hook..
+[90m2023-11-16T08:35:05.458Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Sending stop launch event
+[90m2023-11-16T08:35:05.749Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m [STOP_BUILD] Success response: ""
+[90m2023-11-16T08:35:06.935Z[39m [32mDEBUG[39m [97m@wdio/browserstack-service[39m Response - {
+  status: 'success',
+  message: 'Logs upload successful in file - logs.gz'
+}
