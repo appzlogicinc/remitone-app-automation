@@ -8,26 +8,45 @@ class LoginPage {
     /**
      * define selectors using getter methods
      */
-    // get ignoreBtn (){
-    //     return $('IGNORE');
-    // }
+    get ignoreBtn (){
+        return $('IGNORE');
+    }
 
-    // get loginBtn(){
-    //     return $('[name="Existing User? Login"]');
-    // }
+    get loginBtn(){
+      const selector = 'new UiSelector().description("Existing User? Login")';
+        return $(`android=${selector}`);
+    }
 
-    // get inputUsername () {
-    //     return $('#username');
-    // }
+    get inputUsername () {
+      const selector = 'new UiSelector().textContains("Email Address ")';
+      return $(`android=${selector}`);
+    }
 
-    // get inputPassword () {
-    //     return $('#password');
-    // }
+    get inputPassword () {
+      const selector = 'new UiSelector().textContains("Password ")';
+      return $(`android=${selector}`);
+    }
 
-    // get btnSubmit () {
-    //     return $('button[type="submit"]');
-    // }
+    get btnSubmit () {
+      const selector = 'new UiSelector().description("Login")';
+      return $(`android=${selector}`);
+    }
 
+    get moreBtn () {
+      const selector = 'new UiSelector().descriptionContains("More")';
+      return $(`android=${selector}`);
+    }
+
+    get logoutBtn () {
+      const selector = 'new UiSelector().description("Log Out")';
+      return $(`android=${selector}`);
+    }
+
+    get okBtn () {
+      const selector = 'new UiSelector().description("OK")';
+      return $(`android=${selector}`);
+    }
+  
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -36,37 +55,23 @@ class LoginPage {
     async clickDismissPopup (){
         const selector = 'new UiSelector().text("IGNORE").className("android.widget.Button")'
         const button = await $(`android=${selector}`)
-        await button.click();
-      // await this.ignoreBtn().click();
-    }
+        await button.click(); 
+      }
 
     async clickLoginBtn(){
-        const selector = 'new UiSelector().description("Existing User? Login")';
-        const button = await $(`android=${selector}`);
-        await button.click();
-       // await this.loginBtn().click();
+        await this.loginBtn.click();
     }
 
     async login ( username,  password) {
-        const selector1 = 'new UiSelector().textContains("Email Address ")';
-        const inputUsername = await $(`android=${selector1}`);
-
-        const selector2 = 'new UiSelector().textContains("Password ")';
-        const inputPassword = await $(`android=${selector2}`);
-
-        const selector3 = 'new UiSelector().description("Login")';
-        const btnSubmit = await $(`android=${selector3}`);
-
-        await inputUsername.click();
-        await inputUsername.setValue(username);
-        await inputPassword.click();
-        await inputPassword.setValue(password);
-        await btnSubmit.click();
+        await this.inputUsername.click()
+        await this.inputUsername.setValue(username);
+        await this.inputPassword.click();
+        await this.inputPassword.setValue(password);
+        await this.btnSubmit.click();
     }
 
      async isDahboardDisplayed() {
-        const element = $('android=new UiSelector().description("Wallet")');
-
+        const element = $('android=new UiSelector().description("Wallet")')
         return element.isExisting();
      }
 
@@ -79,21 +84,15 @@ class LoginPage {
     // }
 
       async clickMoreBtn(){
-        const selector = 'new UiSelector().descriptionContains("More")'
-        const moreBtn = await $(`android=${selector}`)
-        moreBtn.click();
+        await this.moreBtn.click()
    }
 
       async clickLogoutBtn(){
-      const selector = 'new UiSelector().description("Logout")';
-      const logoutBtn = await $(`android=${selector}`);
-      logoutBtn.click();
+        await this.logoutBtn.click()
    }
 
      async clickOkBtn(){
-     const selector = 'new UiSelector().description("OK")';
-     const okBtn = await $(`android=${selector}`);
-     okBtn.click();
+      await this.okBtn.click()
    }
 
 
