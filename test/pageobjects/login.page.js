@@ -36,7 +36,7 @@ class LoginPage {
     async clickDismissPopup (){
         const selector = 'new UiSelector().text("IGNORE").className("android.widget.Button")'
         const button = await $(`android=${selector}`)
-        await button.click()
+        await button.click();
       // await this.ignoreBtn().click();
     }
 
@@ -79,8 +79,8 @@ class LoginPage {
     // }
 
       async clickMoreBtn(){
-        const selector = 'new UiSelector().description("More")';
-        const moreBtn = await $(`android=${selector}`);
+        const selector = 'new UiSelector().descriptionContains("More")'
+        const moreBtn = await $(`android=${selector}`)
         moreBtn.click();
    }
 
