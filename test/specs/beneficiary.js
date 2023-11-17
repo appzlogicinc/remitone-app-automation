@@ -10,7 +10,7 @@ describe('Verify Benificiary page', () => {
         await LoginPage.login('dhawal@appzlogic.com', 'Appzlogic@123');
         await BeneficiaryPage.clickBeneficiaryBtn();
         await BeneficiaryPage.clickAddbeneficiaryBtn();
-        await BeneficiaryPage.enterDetails("rock","smith","1234567890","test","test","test","123456");
+        await BeneficiaryPage.enterBeneficiaryDetails("rock","smith","1234567890","test","test","test","123456");
         await BeneficiaryPage.clickSaveBtn();
     })
 

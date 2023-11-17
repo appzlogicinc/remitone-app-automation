@@ -59,7 +59,7 @@ class BeneficiaryPage {
     }
 
     get passport (){
-        const selector8= 'new UiSelector().descriptionContains("PASSPORT")';
+        const selector= 'new UiSelector().descriptionContains("CHEQUEBOOK")';
         return $(`android=${selector}`);
     } 
 
@@ -81,7 +81,7 @@ class BeneficiaryPage {
         await this.addBeneficiaryBtn.click()
     }
 
-     async enterDetails(Firstname,Lastname,mobileNo,address,city,state,postcode){
+     async enterBeneficiaryDetails(Firstname,Lastname,mobileNo,address,city,state,postcode){
 
         await this.inputFirstname.click();
         await this.inputFirstname.setValue(Firstname);
