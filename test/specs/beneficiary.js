@@ -14,6 +14,7 @@ describe('Verify Benificiary page', () => {
         await BeneficiaryPage.clickSaveBtn();
     })
 
+
     
 })
 

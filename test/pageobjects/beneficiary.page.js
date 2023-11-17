@@ -120,4 +120,5 @@ class BeneficiaryPage {
 
 }
 
+
 export default new BeneficiaryPage();
