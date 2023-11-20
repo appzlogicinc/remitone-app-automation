@@ -2,6 +2,7 @@
   "name": "my-new-project",
   "type": "module",
   "devDependencies": {
+    "@wdio/allure-reporter": "^8.23.1",
     "@wdio/browserstack-service": "^8.23.0",
     "@wdio/cli": "^8.23.0",
     "@wdio/dot-reporter": "^8.23.1",
@@ -11,7 +12,7 @@
     "@wdio/spec-reporter": "^8.23.0"
   },
   "scripts": {
-    "android-test": "wdio run ./wdio.android.conf.js",
+    "android-test": "wdio run ./wdio.android.conf.js --spec ./test/specs/test.e2e.js",
     "ios-test": "wdio run ./wdio.ios.conf.js"
   }
 }
