@@ -3,8 +3,9 @@ export const config = {
        // ...
     //    user: process.env.BROWSERSTACK_USERNAME,
     //    key: process.env.BROWSERSTACK_ACCESS_KEY,
-       user: 'snehamavuri_1Zi973',
-       key: 'zxvFDAeM7HzqTT9vYw87',
+    user: 'shadabanwar_NVDCFc',
+    key: 'dsGZVqqWryMwx9asSy1K',
+
        services: [
            ['browserstack', {
                testObservability: true,
@@ -13,7 +14,7 @@ export const config = {
                    buildName: "The static build job name goes here e.g. Nightly regression"
                },
             //    browserstackLocal: true,
-               app: 'bs://8b372ad161dd373c421a1222d33c0dc994dca121'
+               app: 'bs://4305455750a3ad9b6f3097d2f014400b1ba3db42'
            }]
        ],
        hostname: 'hub.browserstack.com',
@@ -151,7 +152,16 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: [
+        'dot',
+        ['junit', {
+            outputDir: './results',
+            outputFileFormat: function() {
+                return `test-results.xml`
+            }
+        }]
+    ],
+  
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
