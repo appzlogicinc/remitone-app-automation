@@ -46,6 +46,13 @@ class LoginPage {
       const selector = 'new UiSelector().description("OK")';
       return $(`android=${selector}`);
     }
+
+  get dashboardElement(){
+    return $('~Wallet')
+
+    // const selector = 'new UiSelector().descriptionContains("Wallet")';
+    //   return $(`android=${selector}`);
+  }
   
     /**
      * a method to encapsule automation code to interact with the page
@@ -70,20 +77,11 @@ class LoginPage {
         await this.btnSubmit.click();
     }
 
-     async isDahboardDisplayed() {
-        const element = $('android=new UiSelector().description("Wallet")')
-        return element.isExisting();
-     }
-
-    //  async isDahboardDisplayed(){
-    //     //const element = $('android=new UiSelector().description("Wallet")');
-
-    //     const selector = 'new UiSelector().descriptionContains("Wallet")';
-    //     const dashboardElement =  $(`android=${selector}`);
-    //     return  await dashboardElement.isExisting();
-    // }
-
-      async clickMoreBtn(){
+     async verifyUserLoggedin() { 
+      return (await this.dashboardElement).isDisplayed();   
+    }
+     
+    async clickMoreBtn(){
         await this.moreBtn.click()
    }
 
@@ -95,7 +93,9 @@ class LoginPage {
       await this.okBtn.click()
    }
 
-
+   async verifyUserLoggedOut(){
+    return  (await this.loginBtn).isDisplayed();
+  }
 }
 
 export default new LoginPage();
