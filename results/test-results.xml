@@ -1,123 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="User Login and logout" timestamp="2023-11-20T18:20:26" time="19.042" tests="2" failures="0" errors="0" skipped="0">
+  <testsuite name="User Login" timestamp="2023-11-24T17:39:58" time="13.544" tests="1" failures="1" errors="1" skipped="0">
     <properties>
       <property name="specId" value="0"/>
-      <property name="suiteName" value="User Login and logout"/>
-      <property name="capabilities" value="android.r5ct319648p"/>
-      <property name="file" value="file://./test/specs/test.e2e.js"/>
+      <property name="suiteName" value="User Login"/>
+      <property name="capabilities" value="android.r5ct31ahl6w"/>
+      <property name="file" value="file:///C:/Users/sneha/Desktop/remit-automation-app/remitone-app-automation/test/specs/test.e2e.js"/>
     </properties>
-    <testcase classname="android.r5ct319648p.User_Login_and_logout" name="User should login with valid credentials" time="10.945">
+    <testcase classname="android.r5ct31ahl6w.User_Login" name="User should login with valid credentials" time="13.535">
+      <failure/>
+      <error message="Can't call click on element with selector &quot;android=new UiSelector().textContains(&quot;Email Address &quot;)&quot; because element wasn't found"/>
       <system-out><![CDATA[
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/execute/sync - {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should login with valid credentials\",\"level\":\"info\"}}","args":[]}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/execute/sync - {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should login with valid credentials\",\"level\":\"info\"}}","args":[]}
 RESULT: {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should login with valid credentials\",\"level\":\"info\"}}","args":[]}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/88c719c5-93b2-4383-a3c4-378dc407bf85/click - {}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/element/05dbeb4e-7140-4bf3-adc0-efb981cd6252/click - {}
 RESULT: {}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/element - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/192f348c-34c0-45fb-a02c-63e745bc4086/click - {}
-RESULT: {}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/bb67187a-ec0b-436e-b704-0dfcf469fd5e/clear - {}
-RESULT: {}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/bb67187a-ec0b-436e-b704-0dfcf469fd5e/value - {"text":"dhawal@appzlogic.com"}
-RESULT: {"text":"dhawal@appzlogic.com"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Password \")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Password \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/ebd8a58a-4092-4176-8f12-67da564ece26/click - {}
-RESULT: {}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Password \")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Password \")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/8a50d468-d5cf-46f7-9e60-9e852633f5c3/clear - {}
-RESULT: {}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/8a50d468-d5cf-46f7-9e60-9e852633f5c3/value - {"text":"Appzlogic@123"}
-RESULT: {"text":"Appzlogic@123"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"Login\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Login\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/ded64d7d-6f3c-4dcd-b350-b2368611734f/click - {}
-RESULT: {}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().textContains(\"Email Address \")"}
 ]]></system-out>
-    </testcase>
-    <testcase classname="android.r5ct319648p.User_Login_and_logout" name="User should be able to logout" time="8.093">
-      <system-out><![CDATA[
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/execute/sync - {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should be able to logout \",\"level\":\"info\"}}","args":[]}
-RESULT: {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should be able to logout \",\"level\":\"info\"}}","args":[]}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/elements - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().descriptionContains(\"More\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/6f52b549-1014-42ad-b823-f97d45f66034/click - {}
-RESULT: {}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"Log Out\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Log Out\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/29304937-b42f-49a3-a1e4-c8a2860078ce/click - {}
-RESULT: {}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"OK\")"}
-RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"OK\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/89b5c72c-0f64-4853-8f48-2a9b4eb26670/click - {}
-RESULT: {}
-]]></system-out>
+      <system-err><![CDATA[
+Error: Can't call click on element with selector "android=new UiSelector().textContains("Email Address ")" because element wasn't found
+    at async LoginPage.login (file:///C:/Users/sneha/Desktop/remit-automation-app/remitone-app-automation/test/pageobjects/login.page.js:66:9)
+    at async Context.<anonymous> (file:///C:/Users/sneha/Desktop/remit-automation-app/remitone-app-automation/test/specs/test.e2e.js?invalidateCache=0.18430654694137516:7:9)
+]]></system-err>
     </testcase>
   </testsuite>
-  <testsuite name="Demo User Login and logout" timestamp="2023-11-20T18:20:45" time="1.783" tests="1" failures="0" errors="0" skipped="0">
+  <testsuite name="User logout" timestamp="2023-11-24T17:40:12" time="10.74" tests="1" failures="1" errors="1" skipped="0">
     <properties>
       <property name="specId" value="0"/>
-      <property name="suiteName" value="Demo User Login and logout"/>
-      <property name="capabilities" value="android.r5ct319648p"/>
-      <property name="file" value="file://./test/specs/test.e2e.js"/>
+      <property name="suiteName" value="User logout"/>
+      <property name="capabilities" value="android.r5ct31ahl6w"/>
+      <property name="file" value="file:///C:/Users/sneha/Desktop/remit-automation-app/remitone-app-automation/test/specs/test.e2e.js"/>
     </properties>
-    <testcase classname="android.r5ct319648p.Demo_User_Login_and_logout" name="User should login with valid credentials" time="1.781">
+    <testcase classname="android.r5ct31ahl6w.User_logout" name="User should be able to logout" time="10.737">
+      <failure/>
+      <error message="Can't call click on element with selector &quot;android=new UiSelector().description(&quot;Existing User? Login&quot;)&quot; because element wasn't found"/>
       <system-out><![CDATA[
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/execute/sync - {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should login with valid credentials\",\"level\":\"info\"}}","args":[]}
-RESULT: {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should login with valid credentials\",\"level\":\"info\"}}","args":[]}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/execute/sync - {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should be able to logout \",\"level\":\"info\"}}","args":[]}
+RESULT: {"script":"browserstack_executor: {\"action\":\"annotate\",\"arguments\":{\"data\":\"Test: User should be able to logout \",\"level\":\"info\"}}","args":[]}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/element - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
 RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
-COMMAND: POST /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735/element/b6549f2a-11e8-427e-9e6a-ffe60c22b40a/click - {}
-RESULT: {}
-COMMAND: DELETE /session/891b7eb3adcdf63fe0062418eb37d2764e5ae735 - {}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: POST /session/6f444759c169759b4636aef848dff4d70cec2189/elements - {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+RESULT: {"using":"-android uiautomator","value":"new UiSelector().description(\"Existing User? Login\")"}
+COMMAND: DELETE /session/6f444759c169759b4636aef848dff4d70cec2189 - {}
 RESULT: {}
 ]]></system-out>
+      <system-err><![CDATA[
+Error: Can't call click on element with selector "android=new UiSelector().description("Existing User? Login")" because element wasn't found
+    at async LoginPage.clickLoginBtn (file:///C:/Users/sneha/Desktop/remit-automation-app/remitone-app-automation/test/pageobjects/login.page.js:62:9)
+    at async Context.<anonymous> (file:///C:/Users/sneha/Desktop/remit-automation-app/remitone-app-automation/test/specs/test.e2e.js?invalidateCache=0.18430654694137516:17:9)
+]]></system-err>
     </testcase>
   </testsuite>
 </testsuites>
