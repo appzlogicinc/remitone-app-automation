@@ -4,6 +4,7 @@ import Dashboard from '../pageobjects/dashboard.js'
 describe('Currency Converter Dashboard', () => {
     it('should select destination country from the dropdown', async () => {
         await Dashboard.selectDestinationCountry('Your Destination Country');
+        
         await Dashboard.selectDestinationCountry('India');
 
         // const selectedCountry = await Dashboard.getSelectedDestinationCountry();

@@ -13,6 +13,7 @@ class Dashboard {
 
     get sourceCurrencyDropdown() {
         const selector = 'new UiSelector().description("GBP")';
+        
         return $(`android=${selector}`);
     }
 

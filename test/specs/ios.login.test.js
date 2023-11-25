@@ -4,6 +4,7 @@ import IosLoginPage from '../pageobjects/ios.page.login.js'
 describe('User Login', () => {
     it('User should login with valid credentials', async () => {
         await IosLoginPage.clickLoginBtn();
+        
         await IosLoginPage.login('dhawal@appzlogic.com', 'Appzlogic@123');
 
     })

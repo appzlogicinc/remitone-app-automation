@@ -10,6 +10,7 @@ class IosLoginPage {
 
     //return $('~IGNORE');
     const selector = 'XCUIElementTypeButton[Name="IGNORE"]';
+    
     return $(selector);
   }
 
