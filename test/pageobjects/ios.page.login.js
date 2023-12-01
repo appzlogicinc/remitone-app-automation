@@ -6,11 +6,7 @@ class IosLoginPage {
    * define selectors using getter methods
    */
   get ignoreBtn() {
-      //return $('IGNORE'); // Update this selector for iOS
-
-    //return $('~IGNORE');
     const selector = 'XCUIElementTypeButton[Name="IGNORE"]';
-    
     return $(selector);
   }
 
@@ -49,13 +45,7 @@ class IosLoginPage {
       return $(selector);
   }
 
-  /**
-   * a method to encapsulate automation code to interact with the page
-   * e.g. to login using username and password
-   */
-
   async clickDismissPopup() {
-      // Update selector for iOS
       const selector = 'XCUIElementTypeButton[name="IGNORE"]';
       const button = await $(selector);
       await button.click();
@@ -76,7 +66,6 @@ class IosLoginPage {
   }
 
   async isDashboardDisplayed() {
-      // Update selector for iOS
       const element = $('XCUIElementTypeOther[name="Wallet"]');
       return element.isExisting();
   }
