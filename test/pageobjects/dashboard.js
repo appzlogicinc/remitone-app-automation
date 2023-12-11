@@ -7,13 +7,11 @@ class DashboardPage {
         return $(`android=${selector}`);
     }
 
+
 get sourceCurrencyDropdown()  {
     const selector = 'new UiSelector().description("GBP")';
     return $(`android=${selector}`);
 }
-
-
-    
 
     get sourceCurrencyField(){
         const selector = 'new UiSelector().description("GBP")';
@@ -102,18 +100,20 @@ get sourceCurrencyDropdown()  {
     }
 
     get verifyCompleteTransactionScreenDisplayed(){
-        const selector = 'new UiSelector().descriptionContains("Complete Transaction")';
+        const selector = 'new UiSelector().description("Complete Transaction")';
         return $(`android=${selector}`);
     }
 
     get amountTextFieldInFinalPaymentScreen(){
-        const selector = 'new UiSelector().text("Amount")';
+        const selector = 'new UiSelector().textContains("Amount")';
         return $$(`android=${selector}`);
+
     }
 
     get clickOnSendNowFinalPaymentScreen(){
-        const selector = 'new UiSelector().text("Send Now")';
-        return $$(`android=${selector}`);
+        const selector = 'new UiSelector().descriptionContains("Send Now")';
+        return $(`android=${selector}`);
+
     }
 
 
@@ -127,7 +127,7 @@ async clickSendNowButton() {
 
     async enterAmountInTextField() {
         await this.amountTextField[0].click();
-        await this.amountTextField[0].setValue('1');
+        await this.amountTextField[0].setValue('2');
 
     }
 
@@ -154,9 +154,6 @@ async clickSendNowButton() {
         return (await this.selectBeneficiaryScreen).isDisplayed();
     }
 
-    
-
-    
 
     async verifySelectedBeneficiaryOption(){
         await this.beneficaryOption.click();
@@ -208,22 +205,24 @@ async clickOnBankTransfer(){
 }
 
 async completeTransactionScreen(){
+
     return await this.verifyCompleteTransactionScreenDisplayed.isDisplayed();
 }
 
 async enterAmountInTextFieldInFinalPaymentScreen() {
     await this.amountTextFieldInFinalPaymentScreen[0].click();
-    await this.amountTextFieldInFinalPaymentScreen[0].setValue('1.5');
-
+    await this.amountTextFieldInFinalPaymentScreen[0].setValue('2');
 }
 
 async clickSendNowButtonOnFinalPaymentScreen() {
-    await this.clickOnSendNowFinalPaymentScreen.click();
+
+
+    //await this.amountTextFieldInFinalPaymentScreen[1].waitForDisplayed({ timeout: 3000 })
+await this.clickOnSendNowFinalPaymentScreen.click();
+}
+
 }
 
 
-
-
-}
 
 export default new DashboardPage();
