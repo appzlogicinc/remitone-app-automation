@@ -3,8 +3,8 @@ export const config = {
        // ...
     //    user: process.env.BROWSERSTACK_USERNAME,
     //    key: process.env.BROWSERSTACK_ACCESS_KEY,
-       user: 'snehamavuri_1Zi973',
-       key: 'zxvFDAeM7HzqTT9vYw87',
+       user: 'abc_QAC3xJ',
+       key: 'zdfPXqVnzbcsUBiBLnYy',
        services: [
            ['browserstack', {
                testObservability: true,
@@ -13,7 +13,7 @@ export const config = {
                    buildName: "The static build job name goes here e.g. Nightly regression"
                },
             //    browserstackLocal: true,
-               app: 'bs://8b372ad161dd373c421a1222d33c0dc994dca121'
+               app: 'bs://cfa6d1748a3d75e908bb6a08d9e0a15db346a22f'
            }]
        ],
        hostname: 'hub.browserstack.com',

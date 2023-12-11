@@ -18,7 +18,7 @@ class LoginPage {
     }
 
     get inputUsername () {
-      const selector = 'new UiSelector().textContains("Email Address ")';
+      const selector = 'new UiSelector().textContains("Email Address")';
       return $(`android=${selector}`);
     }
 
@@ -55,7 +55,7 @@ class LoginPage {
     async clickDismissPopup (){
         const selector = 'new UiSelector().text("IGNORE").className("android.widget.Button")'
         const button = await $(`android=${selector}`)
-        await button.click(); 
+        await button.click();
       }
 
     async clickLoginBtn(){
@@ -74,14 +74,6 @@ class LoginPage {
         const element = $('android=new UiSelector().description("Wallet")')
         return element.isExisting();
      }
-
-    //  async isDahboardDisplayed(){
-    //     //const element = $('android=new UiSelector().description("Wallet")');
-
-    //     const selector = 'new UiSelector().descriptionContains("Wallet")';
-    //     const dashboardElement =  $(`android=${selector}`);
-    //     return  await dashboardElement.isExisting();
-    // }
 
       async clickMoreBtn(){
         await this.moreBtn.click()
