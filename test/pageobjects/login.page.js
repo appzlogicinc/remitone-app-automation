@@ -1,10 +1,12 @@
 import { $ } from '@wdio/globals'
 import Page from './page.js';
+import {validCredentials} from '../../testData/loginData.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page
  */
 class LoginPage {
+
     /**
      * define selectors using getter methods
      */
@@ -48,10 +50,10 @@ class LoginPage {
     }
 
   get dashboardElement(){
-    return $('~Wallet')
+           // return $('~Afghanistan')
 
-    // const selector = 'new UiSelector().descriptionContains("Wallet")';
-    //   return $(`android=${selector}`);
+    const selector = 'new UiSelector().description("Send Now")';
+    return $(`android=${selector}`);
   }
   
     /**
@@ -69,15 +71,30 @@ class LoginPage {
         await this.loginBtn.click();
     }
 
-    async login ( username,  password) {
-        await this.inputUsername.click()
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.click();
-        await this.inputPassword.setValue(password);
+    async login () {
+      async function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      console.log('Start');
+      // Sleep for 2 seconds (2000 milliseconds)
+      await sleep(9000);
+      console.log('End');
+      const { username, password } = validCredentials;
+         await this.inputUsername.click()
+         await this.inputUsername.setValue(username);
+         await this.inputPassword.click();
+         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();
     }
 
      async verifyUserLoggedin() { 
+      async function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      console.log('Start');
+      // Sleep for 2 seconds (2000 milliseconds)
+      await sleep(9000);
+      console.log('End');
       return (await this.dashboardElement).isDisplayed();   
     }
      
