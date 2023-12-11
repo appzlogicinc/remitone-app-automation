@@ -78,6 +78,7 @@ export const config = {
             deviceName: 'Samsung Galaxy S22 Ultra',
             platformVersion: '12.0',
             platformName: 'android',
+            
           }
         
     }],

@@ -1,6 +1,7 @@
 import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page.js'
 
+
 describe('User Login', () => {
     it('User should login with valid credentials', async () => {
         await LoginPage.clickLoginBtn();
@@ -9,7 +10,7 @@ describe('User Login', () => {
     })
 
  
-}),
+});
 
 describe('User logout', () => {
 
@@ -21,7 +22,8 @@ describe('User logout', () => {
         await LoginPage.clickOkBtn();
     })
    
-})
+});
+
 
 
 

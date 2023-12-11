@@ -12,7 +12,7 @@
     "@wdio/spec-reporter": "^8.23.0"
   },
   "scripts": {
-    "android-test": "wdio run ./wdio.android.conf.js --spec ./test/specs/test.e2e.js",
-    "ios-test": "wdio run ./wdio.ios.conf.js --spec ./test/specs/ios.login.test.js"
+    "android-test": "wdio run ./wdio.android.conf.js --spec ./test/specs/login.js --spec ./test/specs/beneficiary.js ",
+    "ios-test": "wdio run ./wdio.ios.conf.js"
   }
 }
