@@ -37,7 +37,7 @@ class LoginPage {
   }
 
   async isDahboardDisplayed() {
-    const element = $('android=new UiSelector().description("Wallet")');
+    const element = $('android=new UiSelector().description("Wallets")');
     return element.isExisting();
   }
 
