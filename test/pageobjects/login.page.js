@@ -1,10 +1,12 @@
 import { $ } from '@wdio/globals'
 import Page from './page.js';
+import {validCredentials} from '../../testData/loginData.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page
  */
 class LoginPage {
+
     /**
      * define selectors using getter methods
      */
@@ -46,6 +48,13 @@ class LoginPage {
       const selector = 'new UiSelector().description("OK")';
       return $(`android=${selector}`);
     }
+
+  get dashboardElement(){
+           // return $('~Afghanistan')
+
+    const selector = 'new UiSelector().description("Send Now")';
+    return $(`android=${selector}`);
+  }
   
     /**
      * a method to encapsule automation code to interact with the page
@@ -62,28 +71,34 @@ class LoginPage {
         await this.loginBtn.click();
     }
 
-    async login ( username,  password) {
-        await this.inputUsername.click()
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.click();
-        await this.inputPassword.setValue(password);
+    async login () {
+      async function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      console.log('Start');
+      // Sleep for 2 seconds (2000 milliseconds)
+      await sleep(9000);
+      console.log('End');
+      const { username, password } = validCredentials;
+         await this.inputUsername.click()
+         await this.inputUsername.setValue(username);
+         await this.inputPassword.click();
+         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();
     }
 
-     async isDahboardDisplayed() {
-        const element = $('android=new UiSelector().description("Wallet")')
-        return element.isExisting();
-     }
-
-    //  async isDahboardDisplayed(){
-    //     //const element = $('android=new UiSelector().description("Wallet")');
-
-    //     const selector = 'new UiSelector().descriptionContains("Wallet")';
-    //     const dashboardElement =  $(`android=${selector}`);
-    //     return  await dashboardElement.isExisting();
-    // }
-
-      async clickMoreBtn(){
+     async verifyUserLoggedin() { 
+      async function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      console.log('Start');
+      // Sleep for 2 seconds (2000 milliseconds)
+      await sleep(9000);
+      console.log('End');
+      return (await this.dashboardElement).isDisplayed();   
+    }
+     
+    async clickMoreBtn(){
         await this.moreBtn.click()
    }
 
@@ -95,7 +110,9 @@ class LoginPage {
       await this.okBtn.click()
    }
 
-
+   async verifyUserLoggedOut(){
+    return  (await this.loginBtn).isDisplayed();
+  }
 }
 
 export default new LoginPage();
