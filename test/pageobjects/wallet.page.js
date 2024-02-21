@@ -65,13 +65,13 @@ class WalletPage {
       }
 
       get loadWalletBtn(){
-        return $('~Load Wallet')
-    //    const selector = 'new UiSelector().description("Load Wallet")';
-     //   return $(`android=${selector}`)
+       // return $('~Load Wallet')
+       const selector = 'new UiSelector().description("WalletLoadRoute, Load Wallet")';
+       return $(`android=${selector}`)
       }
 
       get loadWalletConfirm(){
-        return $('~Confirm Load Wallet')
+        return $('~WalletLoadWalletDetailsRoute, Confirm Load Wallet')
       }
 
       get reviewScreen(){
@@ -85,7 +85,7 @@ class WalletPage {
       }
 
       get cancleBtn(){
-        const selector = 'new UiSelector().description("Cancel Payment")';
+        const selector = 'new UiSelector().description("WalletLoadConfirmPaymentRoute, Cancel Payment")';
         return $(`android=${selector}`); 
       }
 
@@ -95,12 +95,12 @@ class WalletPage {
       }
 
       get cancleConfirmBtn(){
-        const selector = 'new UiSelector().description("Cancel")';
+        const selector = 'new UiSelector().description("WalletLoadConfirmPaymentRoute, Cancel")';
         return $(`android=${selector}`); 
       }
 
       get transferCancleMsg(){
-        const selector = 'new UiSelector().description("Wallet Transaction was cancelled.")';
+        const selector = 'new UiSelector().description("Wallet Transaction was cancelled")';
         return $(`android=${selector}`); 
       }
 
@@ -120,8 +120,8 @@ class WalletPage {
       }
 
       get selectFrom(){
-        const selector = 'new UiSelector().description("Select From")';
-        return $(`android=${selector}`); 
+        const selector = 'new UiSelector().className("android.widget.ImageView")';
+        return $$(`android=${selector}`);
       }
 
       get selectCurrencyFromDropdown(){
@@ -130,8 +130,8 @@ class WalletPage {
       }
 
       get selectTo(){
-        const selector = 'new UiSelector().description("Select From")';
-        return $(`android=${selector}`); 
+        const selector = 'new UiSelector().description("WalletMoveFundRoute, null Select From ")';
+        return $(`android=${selector}`);
       }
 
       get selectCurrencyTodropdowan(){
@@ -145,13 +145,33 @@ class WalletPage {
       }
 
       get moveFundsbutton(){
-        const selector = 'new UiSelector().description("Move Funds")';
+        const selector = 'new UiSelector().description("WalletMoveFundRoute, Move Funds")';
         return $(`android=${selector}`); 
       }
 
       get insuficientErr(){
-        const selector = 'new UiSelector().description("* You cannot transfer more than your current sending wallet balance.")';
+        const selector = 'new UiSelector().descriptionContains("* You cannot transfer more than your current sending wallet balance.")';
         return $(`android=${selector}`); 
+      }
+
+      get sendWalletBtn(){
+        const selector = 'new UiSelector().descriptionContains("Send To Wallet")';
+        return $(`android=${selector}`);  
+      }
+
+      get sendToWalletScreen(){
+        const selector = 'new UiSelector().descriptionContains("Send To Wallet")';
+        return $(`android=${selector}`);  
+      }
+
+      get searchField(){
+        const selector = 'new UiSelector().text("Search Beneficiary By Email...")';
+        return $(`android=${selector}`);  
+      }
+
+      get beneficiary(){
+        const selector = 'new UiSelector().descriptionContains("MOHAMMAD")';
+        return $(`android=${selector}`);  
       }
   
     /**
@@ -241,22 +261,52 @@ class WalletPage {
     }
 
     async enterCurrencyDetails(){
-      await this.selectFrom.click();
-      (await this.selectCurrencyFromDropdown).click();
-      await this.selectTo.click();
-      (await this.selectCurrencyTodropdowan).click();
       await this.enterSendAmt.click();
       await this.enterSendAmt.setValue("1");
+      await this.selectFrom[0].click();
+      (await this.selectCurrencyFromDropdown).click();
+      await this.selectFrom[2].click();
+      (await this.selectCurrencyTodropdowan).click();
+    
     }
 
     async clickMoveFundsbutton(){
+      async function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      console.log('Start');
+      // Sleep for 2 seconds (2000 milliseconds)
+      await sleep(9000);
+      console.log('End');
       await this.moveFundsbutton.click();
     }
 
     async verifyInsufficientFundsMsg(){
+      await (await this.insuficientErr).waitForDisplayed();
       return  (await this.insuficientErr).isDisplayed();
     }
+
+    async clickSendTowallet(){
+       (await this.sendWalletBtn).click();
+    }
+
+    async verifysendToWalletScreen(){
+      return  (await this.sendToWalletScreen).isDisplayed();
+    }
     
+    async enterEmailInSearchField(){
+      (await this.searchField).click();
+      this.searchField.setValue("usman@easyss.net");
+    }
+
+    async verifyBeneficiaryDisplyed(){
+      await (await this.beneficiary).waitForDisplayed();
+      return  (await this.beneficiary).isDisplayed();
+    }
+
+    async selectBeneficiary(){
+      (await this.beneficiary).click();
+    }
 }
 
 export default new WalletPage();

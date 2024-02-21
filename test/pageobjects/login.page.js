@@ -11,12 +11,14 @@ class LoginPage {
      * define selectors using getter methods
      */
     get ignoreBtn (){
-        return $('IGNORE');
+      return $('~IGNORE');
     }
 
     get loginBtn(){
-      const selector = 'new UiSelector().description("Existing User? Login")';
-        return $(`android=${selector}`);
+      return $('~Existing User? Login');
+
+      // const selector = 'new UiSelector().description("Existing User? Login")';
+      //   return $(`android=${selector}`);
     }
 
     get inputUsername () {
@@ -30,8 +32,10 @@ class LoginPage {
     }
 
     get btnSubmit () {
-      const selector = 'new UiSelector().description("Login")';
-      return $(`android=${selector}`);
+      return $('~LoginRoute, Login');
+
+      // const selector = 'new UiSelector().descriptionContains("Login")';
+      // return $(`android=${selector}`);
     }
 
     get moreBtn () {
@@ -50,9 +54,17 @@ class LoginPage {
     }
 
   get dashboardElement(){
-           // return $('~Afghanistan')
+    const selector = 'new UiSelector().description("HomeRoute, Send Now")';
+    return $(`android=${selector}`);
+  }
 
-    const selector = 'new UiSelector().description("Send Now")';
+  get denybtn(){
+    const selector = 'new UiSelector().textContains("Deny")';
+    return $(`android=${selector}`);
+  }
+
+  get dismiss(){
+    const selector = 'new UiSelector().description("IGNORE")';
     return $(`android=${selector}`);
   }
   
@@ -61,25 +73,16 @@ class LoginPage {
      * e.g. to login using username and password
      */
 
-    async clickDismissPopup (){
-        const selector = 'new UiSelector().text("IGNORE").className("android.widget.Button")'
-        const button = await $(`android=${selector}`)
-        await button.click(); 
-      }
-
     async clickLoginBtn(){
-        await this.loginBtn.click();
+      await this.denybtn.click();
+      await this.dismiss.click();
+      await this.loginBtn.click();
     }
 
     async login () {
-      async function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
-      console.log('Start');
-      // Sleep for 2 seconds (2000 milliseconds)
-      await sleep(9000);
-      console.log('End');
+
       const { username, password } = validCredentials;
+      (await this.inputUsername).waitForDisplayed();
          await this.inputUsername.click()
          await this.inputUsername.setValue(username);
          await this.inputPassword.click();
@@ -88,13 +91,7 @@ class LoginPage {
     }
 
      async verifyUserLoggedin() { 
-      async function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
-      console.log('Start');
-      // Sleep for 2 seconds (2000 milliseconds)
-      await sleep(9000);
-      console.log('End');
+      await (await this.dashboardElement).waitForDisplayed();
       return (await this.dashboardElement).isDisplayed();   
     }
      

@@ -70,8 +70,12 @@ class BeneficiaryPage {
         return $(`android=${selector}`)
     }
 
+    get saveEditButton (){
+        return $('~EditBeneficiaryRouteSave');
+    }
+    
     get beneficiaryScreen(){
-        const selector = 'new UiSelector().text("Search Beneficiary…")'
+        const selector = 'new UiSelector().textContains("Search Beneficiary")'
         return $(`android=${selector}`)
     }
 
@@ -105,56 +109,32 @@ class BeneficiaryPage {
     }
 
     get transactionOption(){
-        const selector = 'new UiSelector().descriptionContains("Cash Collection")'
+        const selector = 'new UiSelector().descriptionContains("Card Transfer")'
         return $(`android=${selector}`) 
     }
 
-    get cashCollectionDetailsScreen(){
-        const selector = 'new UiSelector().descriptionContains("Cash Collection Details")'
+    get cardTransferDetailsScreen(){
+        const selector = 'new UiSelector().descriptionContains("Card Transfer Details")'
         return $(`android=${selector}`) 
     }
 
-    get collectionPointState(){
-        const selector = 'new UiSelector().descriptionContains("Collection Point State")'
+    get cardNumber(){
+        const selector = 'new UiSelector().textContains("Card Number")'
         return $(`android=${selector}`) 
     }
 
-    get selectState(){
-        const selector = 'new UiSelector().descriptionContains("Sydney State")'
-        return $(`android=${selector}`) 
-    }
-
-    get collectionPointCity(){
-        const selector = 'new UiSelector().descriptionContains("Collection Point City")'
-        return $(`android=${selector}`) 
-    }
-
-    get selectCity(){
-        const selector = 'new UiSelector().descriptionContains("Sydney City")'
-        return $(`android=${selector}`) 
-
-    }
-   get collectionPoint(){
-    const selector = 'new UiSelector().description("Collection Point")'
-        return $(`android=${selector}`) 
-   }
-
-   get collectionPointOption(){
-    const selector = 'new UiSelector().descriptionContains("Aussie & New Zealand CC")'
-        return $(`android=${selector}`) 
-   }
    get clickSourceIncome(){
-    const selector = 'new UiSelector().descriptionContains("Source of Income *")'
+    const selector = 'new UiSelector().descriptionContains("Source of Income")'
         return $(`android=${selector}`) 
-
    }
+
    get selectIncomeOption(){
     const selector = 'new UiSelector().descriptionContains("Business")'
     return $(`android=${selector}`) 
    }
 
    get clickPurposeRemittance(){
-    const selector = 'new UiSelector().descriptionContains("Purpose of Remittance *")'
+    const selector = 'new UiSelector().descriptionContains("Purpose of Remittance")'
     return $(`android=${selector}`) 
    } 
 
@@ -164,14 +144,44 @@ class BeneficiaryPage {
    } 
 
    get nextOption(){
-    const selector = 'new UiSelector().description("Next")'
+    const selector = 'new UiSelector().descriptionContains("Next")'
     return $(`android=${selector}`) 
    }
 
    get editBtn(){
-   const selector = 'new UiSelector().("Next")'
+   const selector = 'new UiSelector().description("Edit beneficiary")'
     return $(`android=${selector}`) 
    }
+
+   get beneficiaryUpdatedMsg(){
+    const selector = 'new UiSelector().descriptionContains("Beneficiary Successfully Updated !")'
+    return $(`android=${selector}`) 
+   }
+
+   get paymentMethodScreen(){   
+    const selector = 'new UiSelector().descriptionContains("Select Payment Method")'
+    return $(`android=${selector}`) 
+   }
+
+   get paymentMethod(){
+        const selector = 'new UiSelector().description("Card (WorldPay)")'
+        return $(`android=${selector}`) 
+       }
+
+       get completeTransactionScreen(){
+        const selector = 'new UiSelector().description("Complete Transaction")'
+        return $(`android=${selector}`) 
+       }
+
+       get AmountField(){
+        const selector = 'new UiSelector().textContains("Amount")'
+        return $$(`android=${selector}`) 
+       }
+
+       get senNowBtn(){
+        const selector = 'new UiSelector().description("CreateWalletTransactionRoute, Send Now")'
+        return $$(`android=${selector}`) 
+       }
 
     /**
      * a method to encapsule automation code to interact with the page
@@ -234,16 +244,17 @@ class BeneficiaryPage {
    }
 
     async verifyBeneficiaryAdded(){ 
-      return await this.beneficiaryName.isDisplayed();
+     // return await this.beneficiaryName.isDisplayed();
 
     //     const status = false;
-    //     const addedBeneficiary=BeneficiaryPage.firstName.getText;
-    //     const expectedValue=addedBeneficiary.toUpperCase();
-    //    const getbeneficiaryName= (await this.beneficiaryName).getAttribute("content-desc");
-    //    if(addedBeneficiary===getbeneficiaryName){
-    //     status=true;
-    //    }
-    //    return status;
+        const addedBeneficiary= beneficiaryDetails.Firstname;
+
+        const expectedValue=addedBeneficiary.toUpperCase();
+        const getbeneficiaryName= (await this.beneficiaryName).getAttribute("content-desc");
+       if(expectedValue===getbeneficiaryName){
+        status=true;
+       }
+       return status;
     //     expect ((await ( (await this.beneficiaryName).getAttribute("content-desc").)) 
     }
 
@@ -263,21 +274,17 @@ class BeneficiaryPage {
         return await this.TransactionTypeScreen.isDisplayed();
     }
 
-    async selectCashCollectionTrasactionType(){
+    async selectCardTransferTransactionType(){
         await this.transactionOption.click();
     }
 
-    async verifyCashCollectionScreenDisply(){
-        return await this.cashCollectionDetailsScreen.isDisplayed();
+    async verifyCardTransferScreenDisply(){
+        return await this.cardTransferDetailsScreen.isDisplayed();
     }
 
-    async fillCashcollectionForm(){
-        await this.collectionPointState.click();
-        await this.selectState.click();
-        await this.collectionPointCity.click();
-        await this.selectCity.click();
-        await this.collectionPoint.click();
-        await this.collectionPointOption.click();
+    async fillCardTransferForm(){
+        await this.cardNumber.click();
+        await this.cardNumber.setValue("4242424242424242");
         await this.clickSourceIncome.click();
         await this.selectIncomeOption.click();
         await this.clickPurposeRemittance.click();
@@ -285,8 +292,46 @@ class BeneficiaryPage {
         await this.nextOption.click();
     }
 
-    async clickOnEditButton(){
+    async clickEditBeneficiaryBtn(){
         await this.editBtn.click();
+    }
+
+    async editDetails(){
+        const scrollableContainer = $('android=new UiScrollable(new UiSelector().scrollable(true))');
+        scrollableContainer.scroll('down');
+        await this.inputMobileno.click();
+        await this.inputMobileno.setValue("1234567890");
+    }
+
+    async clickSaveEditBtn(){
+        (await this.saveEditButton).click();
+       }
+       
+    async verifyBeneficiaryUpdatedMsg(){
+       (await this.beneficiaryUpdatedMsg).waitForDisplayed();
+       return await this.beneficiaryUpdatedMsg.isDisplayed();
+    }
+
+    async paymentMethodScreenDisplay(){
+        return await this.paymentMethodScreen.isDisplayed();
+    }
+
+    async selectPaymentMethod(){
+        await this.paymentMethod.click();
+
+    }
+
+    async completeTrasactionScreenDisplay(){
+        return await this.completeTransactionScreen.isDisplayed();
+    }
+
+    async enterAmountToTransfer(){
+        await this.AmountField[0].click();
+        await this.AmountField[0].setValue("1.5");
+    }
+
+    async clickSendNowBtn(){
+        await this.senNowBtn.click();
     }
 }
 
