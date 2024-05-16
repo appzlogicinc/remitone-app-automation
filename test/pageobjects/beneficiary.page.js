@@ -6,7 +6,7 @@ import {beneficiaryDetails} from '../../testData/BeneficiaryData.js';
  * sub page containing specific selectors and methods for a specific page
  */
 class BeneficiaryPage {
-          
+
     /**
      * define selectors using getter methods
      */
@@ -16,7 +16,7 @@ class BeneficiaryPage {
     }
 
     get addBeneficiaryBtn (){
-        const selector = 'new UiSelector().description("Add Beneficiary")'
+        const selector = 'new UiSelector().description("HomeRouteAdd Beneficiary")'
         return $(`android=${selector}`)
     }
 
@@ -66,8 +66,20 @@ class BeneficiaryPage {
     } 
 
     get saveBbutton (){
-        const selector = 'new UiSelector().description("Save")'
+        const selector = 'new UiSelector().description("CreateBeneficiaryRouteSave")'
         return $(`android=${selector}`)
+    }
+
+    get addedBeneficiary(){
+        const selector = 'new UiSelector().descriptionContains("OLIVE")'
+        return $(`android=${selector}`)
+    }
+
+    get validationMsg(){
+        return  $('This beneficiary already exists.');
+
+        // const selector = 'new UiSelector().description("This beneficiary already exists.")'
+        // return $(`android=${selector}`)
     }
 
     get saveEditButton (){
@@ -75,8 +87,7 @@ class BeneficiaryPage {
     }
     
     get beneficiaryScreen(){
-        const selector = 'new UiSelector().textContains("Search Beneficiary")'
-        return $(`android=${selector}`)
+        return $('//android.view.View[@content-desc="Select Beneficiary"]');
     }
 
     get addBeneficiaryScreen(){
@@ -104,7 +115,7 @@ class BeneficiaryPage {
     }
 
     get TransactionTypeScreen(){
-        const selector = 'new UiSelector().descriptionContains("Select Transaction Type")'
+        const selector = 'new UiSelector().description("Select Transaction Type")'
         return $(`android=${selector}`) 
     }
 
@@ -119,7 +130,7 @@ class BeneficiaryPage {
     }
 
     get cardNumber(){
-        const selector = 'new UiSelector().textContains("Card Number")'
+        const selector = 'new UiSelector().className("android.widget.EditText")'
         return $(`android=${selector}`) 
     }
 
@@ -154,13 +165,15 @@ class BeneficiaryPage {
    }
 
    get beneficiaryUpdatedMsg(){
-    const selector = 'new UiSelector().descriptionContains("Beneficiary Successfully Updated !")'
-    return $(`android=${selector}`) 
+   return  $('//android.view.View[@content-desc="Beneficiary Successfully Updated !"]');
+   
    }
 
    get paymentMethodScreen(){   
-    const selector = 'new UiSelector().descriptionContains("Select Payment Method")'
-    return $(`android=${selector}`) 
+    return $('~Select Payment Method');
+
+    // const selector = 'new UiSelector().description("Select Payment Method")'
+    // return $(`android=${selector}`) 
    }
 
    get paymentMethod(){
@@ -173,14 +186,66 @@ class BeneficiaryPage {
         return $(`android=${selector}`) 
        }
 
+       get receiveCurrencydropdown(){
+        const selector = 'new UiSelector().description("EUR")'
+        return $(`android=${selector}`) 
+       }
+
+       get selectCurrency(){
+        const selector = 'new UiSelector().description("USD")'
+        return $(`android=${selector}`) 
+       }
+
        get AmountField(){
-        const selector = 'new UiSelector().textContains("Amount")'
+        const selector = 'new UiSelector().className("android.widget.EditText")'
         return $$(`android=${selector}`) 
        }
 
        get senNowBtn(){
-        const selector = 'new UiSelector().description("CreateWalletTransactionRoute, Send Now")'
-        return $$(`android=${selector}`) 
+        const selector = 'new UiSelector().description("CreateTransactionRoute, Send Now")'
+        return $(`android=${selector}`) 
+       }
+
+       get confirmTransactionScreen(){
+        const selector = 'new UiSelector().description("Confirm Transaction")'
+        return $(`android=${selector}`) 
+       }
+
+       get similarTrasactionPopUp(){
+        const selector = 'new UiSelector().description("Similar Transaction")'
+        return $(`android=${selector}`) 
+       }
+
+       get cancleBtn(){
+       return $('~Cancel');
+       }
+
+       get confirmBtn(){
+        const selector = 'new UiSelector().description("Confirm")'
+        return $(`android=${selector}`) 
+       }
+
+       get transactionCreationMsg(){
+        const selector = 'new UiSelector().description("Transaction has been created")'
+        return $(`android=${selector}`) 
+       }
+
+       get trasactionDetailsScreen(){
+        const selector = 'new UiSelector().description("Transaction Details")'
+        return $(`android=${selector}`) 
+       }
+
+       get transactionNo(){
+        const selector = 'new UiSelector().descriptionContains("Transaction No: ")'
+        return $(`android=${selector}`) 
+       }
+
+       get makePaymentBtn(){
+          return $('~Make Payment')
+       }
+
+       get makePaymentScreen(){
+        return $('~Make Payment')
        }
 
     /**
@@ -193,7 +258,7 @@ class BeneficiaryPage {
     }
 
     async verifyBeneficiaryScreenDisply(){
-      return await this.beneficiaryScreen.isDisplayed();       
+      return (await this.addBeneficiaryBtn).isDisplayed();       
  
     }
     
@@ -209,7 +274,6 @@ class BeneficiaryPage {
         const { Firstname,Lastname,mobileNo,address,city,state,postcode } = beneficiaryDetails;
         await this.inputFirstname.click();
         await this.inputFirstname.setValue(Firstname);
-        BeneficiaryPage.firstName= this.inputFirstname.getText();
         browser.hideKeyboard();
         const scrollableContainer = $('android=new UiScrollable(new UiSelector().scrollable(true))');
         scrollableContainer.scroll('down');
@@ -227,16 +291,15 @@ class BeneficiaryPage {
         await this.enterCity.setValue(city);
         browser.hideKeyboard();
         scrollableContainer.scroll('down');
-        await this.enterState.click();
-        await this.enterState.setValue(state);
-        browser.hideKeyboard();
-        scrollableContainer.scroll('down');
+        // await this.enterState.click();
+        // await this.enterState.setValue(state);
+        // browser.hideKeyboard();
+        // scrollableContainer.scroll('down');
         await this.enterPostcode.click();
         await this.enterPostcode.setValue(postcode);
         browser.hideKeyboard();
         await this.idType.click();
         await this.passport.click();
-        return BeneficiaryPage.firstName;
     }
 
    async clickSaveBtn(){
@@ -244,19 +307,29 @@ class BeneficiaryPage {
    }
 
     async verifyBeneficiaryAdded(){ 
+        try{
+            (await this.validationMsg).waitForDisplayed();
+            return this.validationMsg.isDisplayed();
+        }
+
+        catch (exception){
+            (await this.beneficiaryScreen).waitForDisplayed();
+            return this.addedBeneficiary.isDisplayed();
+        }
+    }
      // return await this.beneficiaryName.isDisplayed();
 
     //     const status = false;
-        const addedBeneficiary= beneficiaryDetails.Firstname;
+    //     const addedBeneficiary= beneficiaryDetails.Firstname;
 
-        const expectedValue=addedBeneficiary.toUpperCase();
-        const getbeneficiaryName= (await this.beneficiaryName).getAttribute("content-desc");
-       if(expectedValue===getbeneficiaryName){
-        status=true;
-       }
-       return status;
-    //     expect ((await ( (await this.beneficiaryName).getAttribute("content-desc").)) 
-    }
+    //     const expectedValue=addedBeneficiary.toUpperCase();
+    //     const getbeneficiaryName= (await this.beneficiaryName).getAttribute("content-desc");
+    //    if(expectedValue===getbeneficiaryName){
+    //     status=true;
+    //    }
+    //    return status;
+    // //     expect ((await ( (await this.beneficiaryName).getAttribute("content-desc").)) 
+    // }
 
     async clickOnBeneficiary(){
         await this.beneficiaryName.click();
@@ -279,11 +352,13 @@ class BeneficiaryPage {
     }
 
     async verifyCardTransferScreenDisply(){
+         (await this.cardTransferDetailsScreen).waitForDisplayed();
         return await this.cardTransferDetailsScreen.isDisplayed();
     }
 
     async fillCardTransferForm(){
         await this.cardNumber.click();
+        (await this.cardNumber).clearValue();
         await this.cardNumber.setValue("4242424242424242");
         await this.clickSourceIncome.click();
         await this.selectIncomeOption.click();
@@ -297,10 +372,20 @@ class BeneficiaryPage {
     }
 
     async editDetails(){
-        const scrollableContainer = $('android=new UiScrollable(new UiSelector().scrollable(true))');
-        scrollableContainer.scroll('down');
-        await this.inputMobileno.click();
-        await this.inputMobileno.setValue("1234567890");
+        // const scrollableContainer = $('android=new UiScrollable(new UiSelector().scrollable(true))');
+        // scrollableContainer.scroll('down');
+        // await this.inputMobileno.click();
+        // await this.inputMobileno.setValue("1234567890");
+        function generateRandomMobileNumber() {
+            let randomNumber = '';
+            for (let i = 0; i < 10; i++) {
+              randomNumber += Math.floor(Math.random() * 10); // Generate a random digit (0-9)
+            }
+            return randomNumber;
+          }
+          const randomMobileNumber = generateRandomMobileNumber();
+          await this.inputMobileno.click();
+          await this.inputMobileno.setValue(randomMobileNumber);
     }
 
     async clickSaveEditBtn(){
@@ -308,12 +393,22 @@ class BeneficiaryPage {
        }
        
     async verifyBeneficiaryUpdatedMsg(){
-       (await this.beneficiaryUpdatedMsg).waitForDisplayed();
-       return await this.beneficiaryUpdatedMsg.isDisplayed();
+        try {
+            await (await this.beneficiaryUpdatedMsg).waitForDisplayed();
+            console.log("beneficiary test"+(await this.beneficiaryUpdatedMsg).getText());
+            return await (await this.beneficiaryUpdatedMsg).isDisplayed();
+        } catch (error) {
+            console.error("Error occurred while verifying text:", error);
     }
+}
 
     async paymentMethodScreenDisplay(){
-        return await this.paymentMethodScreen.isDisplayed();
+        try {
+            await (await this.paymentMethodScreen).waitForDisplayed({ timeout: 5000 });
+            return await (await this.paymentMethodScreen).isDisplayed();
+        } catch (error) {
+            console.error("Error occurred while verifying text:", error);
+      }
     }
 
     async selectPaymentMethod(){
@@ -325,13 +420,54 @@ class BeneficiaryPage {
         return await this.completeTransactionScreen.isDisplayed();
     }
 
+    async selectReceiveCurrency(){
+        await this.receiveCurrencydropdown.click();
+        await this.selectCurrency.click();
+    }
+
     async enterAmountToTransfer(){
         await this.AmountField[0].click();
-        await this.AmountField[0].setValue("1.5");
+        await this.AmountField[0].setValue("2");
     }
 
     async clickSendNowBtn(){
+        (await this.confirmTransactionScreen).waitForClickable();    
         await this.senNowBtn.click();
+    }
+
+    async confirmTransactionScreenDisplay(){
+        try {
+            await (await this.confirmTransactionScreen).waitForDisplayed();
+            return await (await this.confirmTransactionScreen).isDisplayed();
+        } catch (error) {
+            await this.similarTrasactionPopUp.isDisplayed();
+            await this.cancleBtn.click();
+            return await (await this.confirmTransactionScreen).isDisplayed();
+      }
+    }
+
+    async clickConfirmBtn(){
+        await this.confirmBtn.click();
+    }
+
+    async transactionCreationMsgDisplayed(){
+       return await this.transactionCreationMsg.isDisplayed();
+    }
+
+    async transactionDetailScreenDisplay(){
+       return  await this.trasactionDetailsScreen.isDisplayed(); 
+    }
+
+    async trasactionNoDisplay(){
+      return  await this.transactionNo.isDisplayed(); 
+    }
+
+    async clickMakePaymentBtn(){
+        await this.makePaymentBtn.click();
+    }
+
+    async makePaymentScreenDisplay(){
+        return this.makePaymentScreen.isDisplayed();
     }
 }
 

@@ -45,7 +45,7 @@ class WalletPage {
       }
 
       get loadAmount(){
-        const selector = 'new UiSelector().textContains("Load Amount")';
+        const selector = 'new UiSelector().className("android.widget.EditText")';
         return $(`android=${selector}`);
       }
 
@@ -65,13 +65,13 @@ class WalletPage {
       }
 
       get loadWalletBtn(){
-       // return $('~Load Wallet')
-       const selector = 'new UiSelector().description("WalletLoadRoute, Load Wallet")';
-       return $(`android=${selector}`)
+        return $('~Load Wallet')
+      //  const selector = 'new UiSelector().description("WalletLoadRoute, Load Wallet")';
+      //  return $(`android=${selector}`)
       }
 
       get loadWalletConfirm(){
-        return $('~WalletLoadWalletDetailsRoute, Confirm Load Wallet')
+        return $('~Confirm Load Wallet')
       }
 
       get reviewScreen(){
@@ -82,26 +82,6 @@ class WalletPage {
       get loadWalletConfirmScrn(){
         const selector = 'new UiSelector().description("Load Your Wallet - Confirm")';
         return $(`android=${selector}`);
-      }
-
-      get cancleBtn(){
-        const selector = 'new UiSelector().description("WalletLoadConfirmPaymentRoute, Cancel Payment")';
-        return $(`android=${selector}`); 
-      }
-
-      get cancellationText(){
-        const selector = 'new UiSelector().description("Confirm Cancellation")';
-        return $(`android=${selector}`); 
-      }
-
-      get cancleConfirmBtn(){
-        const selector = 'new UiSelector().description("WalletLoadConfirmPaymentRoute, Cancel")';
-        return $(`android=${selector}`); 
-      }
-
-      get transferCancleMsg(){
-        const selector = 'new UiSelector().description("Wallet Transaction was cancelled")';
-        return $(`android=${selector}`); 
       }
 
       get moveBtn(){
@@ -120,8 +100,9 @@ class WalletPage {
       }
 
       get selectFrom(){
-        const selector = 'new UiSelector().className("android.widget.ImageView")';
-        return $$(`android=${selector}`);
+        // const selector = 'new UiSelector().className("android.widget.ImageView")';
+        // return $$(`android=${selector}`);
+        return $$('//*[@class="android.widget.ImageView"]');
       }
 
       get selectCurrencyFromDropdown(){
@@ -140,12 +121,12 @@ class WalletPage {
       }
 
       get enterSendAmt(){
-        const selector = 'new UiSelector().textContains("Send Amount")';
+        const selector = 'new UiSelector().className("android.widget.EditText")';
         return $(`android=${selector}`); 
       }
 
       get moveFundsbutton(){
-        const selector = 'new UiSelector().description("WalletMoveFundRoute, Move Funds")';
+        const selector = 'new UiSelector().description("Move Funds")';
         return $(`android=${selector}`); 
       }
 
@@ -165,14 +146,47 @@ class WalletPage {
       }
 
       get searchField(){
-        const selector = 'new UiSelector().text("Search Beneficiary By Email...")';
+        const selector = 'new UiSelector().className("android.widget.EditText")';
         return $(`android=${selector}`);  
+      }
+
+      get searchButton(){
+        const selector = 'new UiSelector().className("android.view.View")';
+        return $$(`android=${selector}`); 
       }
 
       get beneficiary(){
         const selector = 'new UiSelector().descriptionContains("MOHAMMAD")';
         return $(`android=${selector}`);  
       }
+
+      get AmountField(){
+        const selector = 'new UiSelector().textContains("Amount")'
+        return $$(`android=${selector}`) 
+      }
+
+       get senNowBtn(){
+        const selector = 'new UiSelector().description("CreateWalletTransactionRoute, Send Now")'
+        return $(`android=${selector}`) 
+       }
+
+       get makePayment(){
+        return $('~Make Payment');
+       }
+
+       get makePaymentScreen(){
+        return $('//android.view.View[@content-desc="Make Payment"]');
+       }
+
+       get paymentMethods(){
+        const selector = 'new UiSelector().className("android.view.View")';
+        return $$(`android=${selector}`); 
+       }
+
+       get confirmationCodeField(){
+        const selector = 'new UiSelector().text("SMS Verification Code")'
+        return $(`android=${selector}`) 
+       }
   
     /**
      * a method to encapsule automation code to interact with the page
@@ -184,7 +198,8 @@ class WalletPage {
       }
 
     async verifyWalletScreen(){
-        return  (await this.walletScreen).isDisplayed();
+      await (await this.walletScreen).waitForDisplayed();
+     return  (await this.walletScreen).isDisplayed();
 
     }
 
@@ -208,6 +223,7 @@ class WalletPage {
       await this.loadAmount.setValue('1');
       await this.selectPaymentMethod.click();
       await this.paymentOption.click();
+
     }
 
     async verifypaymentinfotext(){
@@ -216,7 +232,7 @@ class WalletPage {
     }
 
     async clickLoadWalletBtn(){
-      
+      (await this.loadWalletBtn).waitForClickable();
       await this.loadWalletBtn.click();
     }
 
@@ -230,22 +246,6 @@ class WalletPage {
 
     async verifyLoadWalletConfirmScreen(){
       return  (await this.loadWalletConfirmScrn).isDisplayed();
-    }
-
-    async clickCanclePaymentBtn(){
-      (await this.cancleBtn).click();
-    }
-
-    async clickCancleConfirmBtn(){
-      (await this.cancleConfirmBtn).click();
-    }
-
-    async verifyCancellationText(){
-      return  (await this.cancellationText).isDisplayed();
-    }
-
-    async verifyCancelTransferMessage(){
-      return  (await this.transferCancleMsg).isDisplayed();
     }
 
     async clickMoveButton(){
@@ -263,9 +263,9 @@ class WalletPage {
     async enterCurrencyDetails(){
       await this.enterSendAmt.click();
       await this.enterSendAmt.setValue("1");
-      await this.selectFrom[0].click();
-      (await this.selectCurrencyFromDropdown).click();
       await this.selectFrom[2].click();
+      (await this.selectCurrencyFromDropdown).click();
+      await this.selectFrom[0].click();
       (await this.selectCurrencyTodropdowan).click();
     
     }
@@ -297,6 +297,8 @@ class WalletPage {
     async enterEmailInSearchField(){
       (await this.searchField).click();
       this.searchField.setValue("usman@easyss.net");
+      this.searchButton[2].waitForClickable();
+      this.searchButton[2].click();
     }
 
     async verifyBeneficiaryDisplyed(){
@@ -306,6 +308,49 @@ class WalletPage {
 
     async selectBeneficiary(){
       (await this.beneficiary).click();
+    }
+
+    async enterAmountToTransfer(){
+      await this.AmountField[1].click();
+      await this.AmountField[1].setValue("2");
+      async function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      console.log('Start');
+      // Sleep for 2 seconds (2000 milliseconds)
+      await sleep(5000);
+      console.log('End');
+   }
+
+    async clickSendNowBtn(){ 
+     await this.senNowBtn.click();
+     async function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    console.log('Start');
+    // Sleep for 2 seconds (2000 milliseconds)
+    await sleep(5000);
+    console.log('End');
+  }
+
+  async clickMakePaymentBtn(){
+    await this.makePayment.click();
+  }
+
+  async verifyMakePaymentScreen(){
+     await (await this.makePaymentScreen).waitForDisplayed();
+    return await this.makePaymentScreen.isDisplayed();
+
+  }
+
+  async verifyPaymentMethod(){
+
+    await (await this.paymentMethods[2]).waitForDisplayed();
+    return await this.paymentMethods[2].isDisplayed();
+  }
+
+   async confimationCodeFieldDispaly(){
+        return await this.confirmationCodeField.isDisplayed();
     }
 }
 

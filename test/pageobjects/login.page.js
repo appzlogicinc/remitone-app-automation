@@ -22,18 +22,17 @@ class LoginPage {
     }
 
     get inputUsername () {
-      const selector = 'new UiSelector().textContains("Email Address ")';
-      return $(`android=${selector}`);
+      const selector = 'new UiSelector().className("android.widget.EditText")';
+      return $$(`android=${selector}`);
     }
 
     get inputPassword () {
-      const selector = 'new UiSelector().textContains("Password ")';
-      return $(`android=${selector}`);
+      const selector = 'new UiSelector().className("android.widget.EditText")';
+      return $$(`android=${selector}`);
     }
 
     get btnSubmit () {
-      return $('~LoginRoute, Login');
-
+     return $('~Login');
       // const selector = 'new UiSelector().descriptionContains("Login")';
       // return $(`android=${selector}`);
     }
@@ -49,12 +48,14 @@ class LoginPage {
     }
 
     get okBtn () {
-      const selector = 'new UiSelector().description("OK")';
-      return $(`android=${selector}`);
+      return $('~OK');
+
+      // const selector = 'new UiSelector().description("OK")';
+      // return $(`android=${selector}`);
     }
 
   get dashboardElement(){
-    const selector = 'new UiSelector().description("HomeRoute, Send Now")';
+    const selector = 'new UiSelector().description("Send Now")';
     return $(`android=${selector}`);
   }
 
@@ -74,6 +75,7 @@ class LoginPage {
      */
 
     async clickLoginBtn(){
+      (await this.denybtn).waitForClickable();
       await this.denybtn.click();
       await this.dismiss.click();
       await this.loginBtn.click();
@@ -82,11 +84,12 @@ class LoginPage {
     async login () {
 
       const { username, password } = validCredentials;
-      (await this.inputUsername).waitForDisplayed();
-         await this.inputUsername.click()
-         await this.inputUsername.setValue(username);
-         await this.inputPassword.click();
-         await this.inputPassword.setValue(password);
+      (await this.inputUsername[0]).waitForDisplayed();
+         await this.inputUsername[0].click()
+         await this.inputUsername[0].setValue(username);
+         await this.inputPassword[1].click();
+         await this.inputPassword[1].setValue(password);
+         (await this.btnSubmit).waitForClickable();
         await this.btnSubmit.click();
     }
 
@@ -108,8 +111,11 @@ class LoginPage {
    }
 
    async verifyUserLoggedOut(){
-    return  (await this.loginBtn).isDisplayed();
+    await this.dismiss.waitForDisplayed();
+    (await this.dismiss).click(); 
+   return  (await this.loginBtn).isDisplayed();
   }
+
 }
 
 export default new LoginPage();

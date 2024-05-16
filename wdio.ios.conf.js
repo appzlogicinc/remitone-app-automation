@@ -3,8 +3,8 @@ export const config = {
        // ...
     //    user: process.env.BROWSERSTACK_USERNAME,
     //    key: process.env.BROWSERSTACK_ACCESS_KEY,
-       user: 'snehamavuri_1Zi973',
-       key: 'zxvFDAeM7HzqTT9vYw87',
+    user: 'remitone2',
+    key: '7qQVvsawDEsMAu7mzsTc',
        services: [
            ['browserstack', {
                testObservability: true,
@@ -13,7 +13,7 @@ export const config = {
                    buildName: "The static build job name goes here e.g. Nightly regression"
                },
             //    browserstackLocal: true,
-               app: 'bs://8b372ad161dd373c421a1222d33c0dc994dca121'
+               app: 'bs://485ce3474326cd2beac6af4dfcefd4aedbf3a8f0'
            }]
        ],
        hostname: 'hub.browserstack.com',
@@ -42,7 +42,7 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        './test/specs/**/ios_beneficiary.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -74,8 +74,8 @@ export const config = {
         // capabilities for local browser web tests
         // browserName: 'chrome', // or "firefox", "microsoftedge", "safari",
         'bstack:options': {
-            deviceName: 'iPhone 14 Pro Max',
-            platformVersion: '16',
+            deviceName: 'iPhone 11 Pro',
+            platformVersion: '13.5',
             platformName: 'ios',
           }
         
@@ -151,7 +151,20 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: [
+        'dot',
+        ['junit', {
+            outputDir: './results',
+            outputFileFormat: function() {
+                return `test-results.xml`
+            }
+        }],
+          ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: true,
+        }],
+    ],
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/

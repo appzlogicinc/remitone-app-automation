@@ -37,7 +37,7 @@ class iosLoginPage {
       }
       
       get btnSubmit () {
-        return $('~Login');
+        return $('~LoginRoute, Login');
         // const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'Login'`
         // return $(`-ios predicate string:${selector}`)
 
@@ -55,38 +55,17 @@ class iosLoginPage {
       }
   
       get okBtn () {
-        return $('~OK');
+        return $('~HomeRouteOK');
         // const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'OK'`
         // return $(`-ios predicate string:${selector}`)
       }
   
     get dashboardElement(){
-      return $('~Send Now');
+      return $('~HomeRoute, Send Now');
         // const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'Send Now'`
         // return $(`-ios predicate string:${selector}`)
 
     }
-    get beneficiary(){
-        const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'Beneficiary'`
-        return $(`-ios predicate string:${selector}`)
-
-    }
-    get addBeneficiary(){
-      return $('~Add Beneficiary');
-    }
-
-    get inputFirstname (){
-      const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'First Name'`
-        return $(`-ios predicate string:${selector}`)
-
-  }
-    
-
-
-
-    
-
-    
   
     /**
      * a method to encapsule automation code to interact with the page
@@ -106,7 +85,6 @@ class iosLoginPage {
            await this.inputPassword.click();
            await this.inputPassword.setValue(password);
           await this.btnSubmit.click();
-          await this.beneficiary.click();
       }
 
       async verifyUserLoggedin() { 
@@ -115,20 +93,21 @@ class iosLoginPage {
       }
 
       async clickMoreBtn(){
-        await this.moreBtn.click()
+        await this.moreBtn.click();
    }
 
       async clickLogoutBtn(){
-        await this.logoutBtn.click()
+        await this.logoutBtn.click();
    }
 
      async clickOkBtn(){
-      await this.okBtn.click()
+      await this.okBtn.click();
    }
 
-   async verifyUserLoggedOut(){
-    return  (await this.loginBtn).isDisplayed();
-  }
+   async verifyUserLoggedOut(){ 
+    (await this.ignoreBtn).waitForDisplayed();
+     return  (await this.ignoreBtn).isDisplayed();
+    }
     
 }
 
