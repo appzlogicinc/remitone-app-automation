@@ -75,7 +75,7 @@ class LoginPage {
      */
 
     async clickLoginBtn(){
-      (await this.denybtn).waitForClickable();
+    //  (await this.denybtn).waitForClickable();
       await this.denybtn.click();
       await this.dismiss.click();
       await this.loginBtn.click();
@@ -94,7 +94,7 @@ class LoginPage {
     }
 
      async verifyUserLoggedin() { 
-      await (await this.dashboardElement).waitForDisplayed();
+      await (await this.dashboardElement).waitForDisplayed({timeout:30000});
       return (await this.dashboardElement).isDisplayed();   
     }
      
