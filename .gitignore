@@ -5,3 +5,4 @@ logs
 results/*
 package-lock.json
 .DS_Store
+allure-report/*
