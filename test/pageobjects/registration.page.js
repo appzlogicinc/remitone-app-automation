@@ -239,6 +239,7 @@ class RegistrationPage {
     }
 
     async  verifyUserIsLoggedIn(){
+        await this.dashboardElement.waitForDisplayed();
         return (await this.dashboardElement).isDisplayed();
     }
 
