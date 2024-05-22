@@ -9,6 +9,10 @@ class iosLoginPage {
     /**
      * define selectors using getter methods
      */
+
+    get cameraAccess(){
+      return $('~Don’t Allow')
+    }
     get ignoreBtn (){
       return $('~IGNORE');
       //  const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'IGNORE'`
@@ -37,7 +41,7 @@ class iosLoginPage {
       }
       
       get btnSubmit () {
-        return $('~LoginRoute, Login');
+        return $('~Login');
         // const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'Login'`
         // return $(`-ios predicate string:${selector}`)
 
@@ -55,13 +59,13 @@ class iosLoginPage {
       }
   
       get okBtn () {
-        return $('~HomeRouteOK');
+        return $('~OK');
         // const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'OK'`
         // return $(`-ios predicate string:${selector}`)
       }
   
     get dashboardElement(){
-      return $('~HomeRoute, Send Now');
+      return $('~Send Now');
         // const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'Send Now'`
         // return $(`-ios predicate string:${selector}`)
 
@@ -73,6 +77,7 @@ class iosLoginPage {
      */
 
     async clickLoginBtn(){
+      (await this.cameraAccess).click();
         await this.ignoreBtn.click();
        await this.loginBtn.click();
     }
@@ -88,7 +93,7 @@ class iosLoginPage {
       }
 
       async verifyUserLoggedin() { 
-        await (await this.dashboardElement).waitForDisplayed();
+        await (await this.dashboardElement).waitForDisplayed({timeout:30000});
         return (await this.dashboardElement).isDisplayed();   
       }
 
@@ -105,8 +110,9 @@ class iosLoginPage {
    }
 
    async verifyUserLoggedOut(){ 
-    (await this.ignoreBtn).waitForDisplayed();
-     return  (await this.ignoreBtn).isDisplayed();
+   await (await this.ignoreBtn).waitForDisplayed();
+      await(await this.ignoreBtn).click();
+   return  (await this.loginBtn).isDisplayed();
     }
     
 }

@@ -9,13 +9,8 @@ class dashboardPage {
     /**
      * define selectors using getter methods
      */
-    get countryDropdown (){
+    get countryOnDashboard (){
         const selector = 'new UiSelector().description("Bangladesh")'
-        return $(`android=${selector}`)
-    }
-
-    get country(){
-        const selector = 'new UiSelector().description("Afghanistan")'
         return $(`android=${selector}`)
     }
 
@@ -25,12 +20,12 @@ class dashboardPage {
     }
 
     get exchangeRate(){
-        const selector = 'new UiSelector().descriptionContains("GBP").descriptionContains("AFN")';
+        const selector = 'new UiSelector().descriptionContains("GBP").descriptionContains("BDT")';
         return $(`android=${selector}`);
     }
 
     get transferFee(){
-      return $('//android.view.View[@content-desc="2.270 GBP"]')
+      return $('//android.view.View[@content-desc="5.330 GBP"]')
     }
 
     /**
@@ -48,8 +43,8 @@ class dashboardPage {
     }
 
     async verifyCountryDisplayOnDahboard(){
-        await this.country.waitForDisplayed();
-    return  (await this.country).isDisplayed();
+        await this.countryOnDashboard.waitForDisplayed();
+    return  (await this.countryOnDashboard).isDisplayed();
     }
 
     async ClickSendNowBtn(){

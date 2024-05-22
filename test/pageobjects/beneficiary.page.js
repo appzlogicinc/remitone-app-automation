@@ -16,7 +16,7 @@ class BeneficiaryPage {
     }
 
     get addBeneficiaryBtn (){
-        const selector = 'new UiSelector().description("HomeRouteAdd Beneficiary")'
+        const selector = 'new UiSelector().description("Add Beneficiary")'
         return $(`android=${selector}`)
     }
 
@@ -100,7 +100,7 @@ class BeneficiaryPage {
     //     return $(`android=${selector}`)
     // }
     get beneficiaryName(){
-        const selector = 'new UiSelector().descriptionContains("CSMITH")'
+        const selector = 'new UiSelector().descriptionContains("REMITONE")'
         return $(`android=${selector}`)
     }
 
@@ -135,7 +135,7 @@ class BeneficiaryPage {
     }
 
    get clickSourceIncome(){
-    const selector = 'new UiSelector().descriptionContains("Source of Income")'
+    const selector = 'new UiSelector().descriptionContains("Source of Income ")'
         return $(`android=${selector}`) 
    }
 
@@ -145,7 +145,7 @@ class BeneficiaryPage {
    }
 
    get clickPurposeRemittance(){
-    const selector = 'new UiSelector().descriptionContains("Purpose of Remittance")'
+    const selector = 'new UiSelector().descriptionContains("Purpose of Remittance ")'
     return $(`android=${selector}`) 
    } 
 
@@ -155,8 +155,9 @@ class BeneficiaryPage {
    } 
 
    get nextOption(){
-    const selector = 'new UiSelector().descriptionContains("Next")'
-    return $(`android=${selector}`) 
+    return $('~Next')
+    // const selector = 'new UiSelector().descriptionContains("Next")'
+    // return $(`android=${selector}`) 
    }
 
    get editBtn(){
@@ -202,7 +203,7 @@ class BeneficiaryPage {
        }
 
        get senNowBtn(){
-        const selector = 'new UiSelector().description("CreateTransactionRoute, Send Now")'
+        const selector = 'new UiSelector().description("Send Now")'
         return $(`android=${selector}`) 
        }
 
@@ -258,6 +259,7 @@ class BeneficiaryPage {
     }
 
     async verifyBeneficiaryScreenDisply(){
+        await this.addBeneficiaryBtn.waitForDisplayed();
       return (await this.addBeneficiaryBtn).isDisplayed();       
  
     }
@@ -358,7 +360,6 @@ class BeneficiaryPage {
 
     async fillCardTransferForm(){
         await this.cardNumber.click();
-        (await this.cardNumber).clearValue();
         await this.cardNumber.setValue("4242424242424242");
         await this.clickSourceIncome.click();
         await this.selectIncomeOption.click();
@@ -404,7 +405,7 @@ class BeneficiaryPage {
 
     async paymentMethodScreenDisplay(){
         try {
-            await (await this.paymentMethodScreen).waitForDisplayed({ timeout: 5000 });
+            await (await this.paymentMethodScreen).waitForDisplayed();
             return await (await this.paymentMethodScreen).isDisplayed();
         } catch (error) {
             console.error("Error occurred while verifying text:", error);
@@ -431,7 +432,7 @@ class BeneficiaryPage {
     }
 
     async clickSendNowBtn(){
-        (await this.confirmTransactionScreen).waitForClickable();    
+      //  (await this.senNowBtn).waitForClickable();    
         await this.senNowBtn.click();
     }
 

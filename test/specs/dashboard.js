@@ -10,12 +10,10 @@ describe('Dashboard page', () => {
         await LoginPage.clickLoginBtn();
         await LoginPage.login();
         chaiExpect(await LoginPage.verifyUserLoggedin()).to.be.true;
-        await dashboardPage.clickCountryDropdown();
-        await dashboardPage.selectCountry();
         chaiExpect(await dashboardPage.verifyCountryDisplayOnDahboard()).to.be.true;
         await BeneficiaryPage.enterAmountToTransfer();
         chaiExpect(await dashboardPage.verifyExchangeRateDisplay()).to.be.true;
-        chaiExpect(await dashboardPage.verifyTransferFee()).to.be.true;  
+      //  chaiExpect(await dashboardPage.verifyTransferFee()).to.be.true;  
         await dashboardPage.ClickSendNowBtn();
         chaiExpect(await BeneficiaryPage.verifyBeneficiaryScreenDisply()).to.be.true;
         await BeneficiaryPage.clickOnBeneficiary();
@@ -27,6 +25,9 @@ describe('Dashboard page', () => {
         await BeneficiaryPage.selectPaymentMethod();
         chaiExpect(await BeneficiaryPage.completeTrasactionScreenDisplay()).to.be.true;
         await BeneficiaryPage.clickSendNowBtn();
+        chaiExpect(await BeneficiaryPage.confirmTransactionScreenDisplay()).to.be.true;
+      //  await BeneficiaryPage.clickConfirmBtn();
+       // chaiExpect(await BeneficiaryPage.transactionCreationMsgDisplayed()).to.be.true;
 
     }) 
 

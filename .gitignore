@@ -3,5 +3,6 @@ allure-results/*
 logs
 .vscode
 results/*
+package-lock.json
 .DS_Store
 allure-report/*
