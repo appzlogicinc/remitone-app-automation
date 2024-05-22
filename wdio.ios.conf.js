@@ -13,7 +13,7 @@ export const config = {
                    buildName: "The static build job name goes here e.g. Nightly regression"
                },
             //    browserstackLocal: true,
-               app: 'bs://485ce3474326cd2beac6af4dfcefd4aedbf3a8f0'
+               app: 'bs://92f2a654175dedfeaf3e4bc1c666e0322be55d3b'
            }]
        ],
        hostname: 'hub.browserstack.com',
@@ -42,7 +42,7 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/ios_beneficiary.js'
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -78,7 +78,6 @@ export const config = {
             platformVersion: '13.5',
             platformName: 'ios',
           }
-        
     }],
 
     //
