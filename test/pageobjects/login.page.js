@@ -84,7 +84,7 @@ class LoginPage {
     async login () {
 
       const { username, password } = validCredentials;
-      (await this.inputUsername[0]).waitForDisplayed();
+      (await this.inputUsername[0]).waitForDisplayed({timeout:30000});
          await this.inputUsername[0].click()
          await this.inputUsername[0].setValue(username);
          await this.inputPassword[1].click();

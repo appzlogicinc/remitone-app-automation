@@ -188,8 +188,14 @@ class RegistrationPage {
     }
 
     async enterLastName(){
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        let randomLastName = '';
+        for (let i = 0; i < 5; i++) { 
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            randomLastName += characters[randomIndex];
+        }
         await this.lastnameField.click();
-        await this.lastnameField.setValue("Smith");  
+        await this.lastnameField.setValue(randomLastName);  
     }
 
     async selectDateOfBirth(){
@@ -206,7 +212,7 @@ class RegistrationPage {
 
     async enterAddress(){
         await this.addressField.click();
-        await (await this.addressField).setValue("Bloack A, Street 6");
+        await (await this.addressField).setValue("Block A, Street 6");
         browser.hideKeyboard();
     }
 
