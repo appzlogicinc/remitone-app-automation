@@ -112,7 +112,7 @@ class LoginPage {
 
    async verifyUserLoggedOut(){
     await this.dismiss.waitForDisplayed();
-    (await this.dismiss).click(); 
+   await (await this.dismiss).click(); 
    return  (await this.loginBtn).isDisplayed();
   }
 

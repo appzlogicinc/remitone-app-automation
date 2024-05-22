@@ -176,19 +176,20 @@ class RegistrationPage {
       browser.hideKeyboard();
     }
 
-    async enterFirstName(){
-        const firstNames = ["John", "Jane", "Alex", "Emily", "Chris"];
-        const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-        await this.firstNameField.click();
-        await this.firstNameField.setValue(randomFirstName);
+    async enterFirstName() {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        let randomFirstName = '';
+        for (let i = 0; i < 5; i++) { 
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            randomFirstName += characters[randomIndex];
+        }
+        await this.firstNameField.click(); 
+        await this.firstNameField.setValue(randomFirstName); 
     }
 
     async enterLastName(){
-        const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones"];
-        const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-        browser.hideKeyboard();
         await this.lastnameField.click();
-        await this.lastnameField.setValue(randomLastName);  
+        await this.lastnameField.setValue("Smith");  
     }
 
     async selectDateOfBirth(){
