@@ -16,8 +16,8 @@
     "typescript": "^5.3.2"
   },
   "scripts": {
-    "android-test": "wdio run ./wdio.android.conf.js  --spec ./test/specs/registration.js --spec ./test/specs/login.js --spec ./test/specs/wallet.js --spec ./test/specs/dashboard.js",
-    "ios-test": "wdio run ./wdio.ios.conf.js --spec ./test/specs/ios_login.js "
+    "android-test": "wdio run ./wdio.android.conf.js --spec ./test/specs/registration.js --spec ./test/specs/login.js --spec ./test/specs/dashboard.js --spec ./test/specs/wallet.js",
+    "ios-test": "wdio run ./wdio.ios.conf.js --spec ./test/specs/ios_login.js --spec ./test/specs/ios_dashboard.js --spec ./test/specs/ios_wallet.js"
   },
   "dependencies": {
     "node": "^21.2.0"

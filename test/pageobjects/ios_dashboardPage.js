@@ -5,20 +5,49 @@ class iosDashboardPage {
     /**
      * define selectors using getter methods
      */
-    get countryDropdown (){
+    get countryName (){
         return $('~Bangladesh');
-    }
-
-    get countryName(){
-        return $('~Afghanistan');
     }
 
     get amountField(){
         return $('(//XCUIElementTypeTextField[@name="Amount"])[1]');
     }
 
+    get exchanageRate(){
+        return $('//XCUIElementTypeStaticText[contains(@name,"BDT ")]');
+    }
+
     get sendNowBtn(){
-        return $('~HomeRoute, Send Now')
+        return $('~Send Now')
+    }
+
+    get continueBtn(){
+       return $('//XCUIElementTypeButton[@name="Continue"]')
+       // return $('~Continue')
+    }
+
+    get confirmTransactionScreen(){
+        return $('~Confirm Transaction')
+    }
+
+    get confirmButton(){
+        return $('~Confirm')
+    }
+
+    get transactionDetailsScreen(){
+        return $('~Transaction Details')
+    }
+
+    get transactionCreatedMsg(){
+        return $('~Transaction has been created')
+    }
+
+    get makePaymentBtn(){
+        return $('~Make Payment')
+    }
+
+    get worldPayScreen(){
+        return $('~Payments powered by WordPay')
     }
 
     get beneficiaryScreen(){
@@ -29,18 +58,23 @@ class iosDashboardPage {
         return $('(//*[@type="XCUIElementTypeStaticText"])[1]')
     }
 
-    get selectBeneficiaryTypeScreen(){  
-    const selector = `label == "Select Transaction Type"`
-    return $(`-ios predicate string:${selector}`)
-      //  return $('//XCUIElementTypeOther[@name="Select Transaction Type"]')
+    get transactionTypeScreen(){  
+    // const selector = `label == "Select Transaction Type"`
+    // return $(`-ios predicate string:${selector}`)
+    //   return $('(//*[@name="Select Transaction Type"])[1]')
+    // const classChainSelector = '**/XCUIElementTypeOther[`name == "Select Transaction Type"`][1]';
+    // return $(`-ios class chain:${classChainSelector}`);
+           return $('(//XCUIElementTypeOther[@name="Select Transaction Type"])[2]')
     }
 
-    get cardTrasnferOption(){
+    get cardTransferOption(){
         return $('~Card Transfer')
     }
 
      get cardTransferScreen(){
-        return $('//XCUIElementTypeOther[@name="Card Transfer Details"]')
+        const selector = 'name == "Card Transfer Details" AND label == "Card Transfer Details" AND type == "XCUIElementTypeOther"'
+        return $(`-ios predicate string:${selector}`)
+      //  return $('//XCUIElementTypeOther[@name="Card Transfer Details"]')
         // const selector = `label == "Card Transfer Details" AND name == "Card Transfer Details" AND type == "XCUIElementTypeOther"`
         // return $(`-ios predicate string:${selector}`)
      }
@@ -68,7 +102,7 @@ class iosDashboardPage {
      }
 
      get nextButton(){
-        return $('~CreateTransactionRoute, Next')
+        return $('~Next')
      }
 
      get paymentMethodScreen(){
@@ -76,15 +110,11 @@ class iosDashboardPage {
      }
 
      get paymentMethod(){
-        return $('~Card (Worldline)')
+        return $('~Card (WorldPay)')
      }
     
      get completeTransactionScreen(){
         return $('~Complete Transaction')
-     }
-
-     get sendButton(){
-        return $('~CreateTransactionRoute, Send Now')
      }
      
 
@@ -93,21 +123,19 @@ class iosDashboardPage {
      * e.g. to login using username and password
      */
 
-    async clickCountryDropdown(){
-        await this.countryDropdown.click();
-       }
-
-    async selectCountry(){
-        await this.countryName.click();
-    }
-
-    async selectedCounteryDisplayed(){
+    async verifyCountryDisplayOnDahboard(){
         return (await this.countryName).isDisplayed();
     }
 
     async enterAmount(){
+        await (await this.amountField).waitForDisplayed({timeout:30000});
         await this.amountField.click();
         await this.amountField.setValue("2");
+    }
+
+    async verifyExchangeRateDisplayed(){
+        await (await this.exchanageRate).waitForDisplayed({timeout:30000});
+        return  await this.exchanageRate.isDisplayed();
     }
 
     async clickSendNowBtn(){
@@ -123,29 +151,26 @@ class iosDashboardPage {
         await this.beneficiaryName.click();
     }
 
-    async beneficiaryTypeScreenDisplayed(){
-        (await this.selectBeneficiaryTypeScreen).waitForDisplayed();
-       return  await this.selectBeneficiaryTypeScreen.isDisplayed();
+    async transactionTypeScreenDisplayed(){
+    return await this.transactionTypeScreen.isDisplayed();
     }
 
-    async clickCardTrasnfer(){
-        (await this.cardTrasnferOption).click();
+    async clickCardTransfer(){
+        await this.cardTransferOption.click();
     }
 
     async verifyCardTransferScreenDisply(){
-        (await this.cardTransferScreen).waitForDisplayed();
-        return  await this.cardTransferScreen.isDisplayed();
+        return  await (await this.cardTransferScreen).isDisplayed();
     }
 
     async fillCardTransferForm(){
         await this.cardNumber.click();
-        (await this.cardNumber).clearValue();
-        (await this.cardNumber).setValue("4242424242424242");
-        (await this.sourceIncomeDropdown).click();
-        (await this.dropdownOption).click();
-        (await this.remittanceDropdown).click();
-        (await this.dropdownOption).click();
-        (await this.nextButton).click();
+        await (await this.cardNumber).setValue("4242424242424242");
+        await (await this.sourceIncomeDropdown).click();
+        await (await this.dropdownOption).click();
+        await (await this.remittanceDropdown).click();
+        await (await this.dropdownOption).click();
+        await(await this.nextButton).click();
     }
 
     async paymentMethodScreenDisplay(){
@@ -163,7 +188,45 @@ class iosDashboardPage {
     }
 
     async clickSendButton(){
-        await this.sendButton.click(); 
+        await this.sendNowBtn.click(); 
+    }
+
+    async confirmTransactionScreenDisplay(){
+            try {        
+                try {
+                    await (await this.continueBtn).waitForDisplayed({ timeout:30000 });
+                    await this.continueBtn.click();
+                } catch (e) {
+                    console.log('Continue button not displayed within timeout.');
+                }
+                const confirmTransactionScreenDisplayed = await this.confirmTransactionScreen.isDisplayed();
+                return confirmTransactionScreenDisplayed;
+            } catch (error) {
+                console.error('Error in confirmTransactionScreenDisplay:', error);
+                return false;
+            }
+        }
+
+    async clickConfirmutton(){
+        await (await this.confirmButton).click(); 
+    }
+
+    async transactionDetailsScreenDisplay(){
+        return await (await this.transactionDetailsScreen).isDisplayed();
+    }
+
+    async transactionCreationMsgDisplyed(){
+        await (await this.transactionCreatedMsg).waitForDisplayed({timeout:30000});
+        return await (await this.transactionCreatedMsg).isDisplayed();
+    }
+
+    async clickMakePaymentBtn(){
+        await (await this.makePaymentBtn).click(); 
+    }
+
+    async worldPayScreenDisplayed(){
+        await (await this.worldPayScreen).waitForDisplayed({timeout:30000});
+       return await (await this.worldPayScreen).isDisplayed();
     }
 
 }
