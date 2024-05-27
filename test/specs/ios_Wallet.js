@@ -34,6 +34,7 @@ describe('Load Wallet', () => {
        chaiExpect(await ios_WalletPage.verifyMakePaymentScreen()).to.be.true; 
        chaiExpect(await ios_WalletPage.verifyPaymentMethod()).to.be.true;
     })
+});
 
     describe('Move funds', () => {
         it('Verify move funds functionality', async () => {
@@ -44,8 +45,27 @@ describe('Load Wallet', () => {
            await ios_WalletPage.clickMoveFundsbutton();
            chaiExpect(await ios_WalletPage.verifyInsufficientFundsMsg()).to.be.true;
         })
-    })
+    });
 
-});
+    describe('Send to Wallet', () => {
+        it('Verify send to wallet functionality', async () => {
+           await ios_WalletPage.clickSendTowallet();
+           chaiExpect(await ios_WalletPage.verifysendToWalletScreen()).to.be.true;
+           await ios_WalletPage.enterEmailInSearchField();
+           chaiExpect(await ios_WalletPage.verifyBeneficiaryDisplyed()).to.be.true;
+           await ios_WalletPage.selectBeneficiary();
+           chaiExpect(await ios_WalletPage.verifyBeneficiaryDetailsScreenDisply()).to.be.true;
+           await ios_WalletPage.clickSendMoneyBtn();
+           chaiExpect(await ios_WalletPage.paymentMethodScreenDisplay()).to.be.true;
+           await ios_WalletPage.selectPaymentOption();
+           chaiExpect(await ios_WalletPage.completeTrasactionScreenDisplay()).to.be.true;
+           await ios_WalletPage.selectReceiveCurrency();
+           await ios_WalletPage.enterAmountToTransfer();
+           await ios_WalletPage.clickSendNowBtn();
+           chaiExpect(await ios_WalletPage.confirmTransactionScreenDisplay()).to.be.true;
+        //   await ios_WalletPage.clickConfirmBtn();
+         //  chaiExpect(await WalletPage.confimationCodeFieldDispaly()).to.be.true;
+        })
+    });
 
 

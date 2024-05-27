@@ -106,6 +106,67 @@ class ios_WalletPage {
         return $('//XCUIElementTypeStaticText[contains(@name,"* You cannot transfer more than your current sending wallet balance.")]') 
     }
 
+    get sendToWallet(){
+        return $('~Send To Wallet')
+    }
+
+    get searchField(){
+        return $('~Search Beneficiary By Email or Phone Number...')
+    }
+
+    get searchButton(){
+        return $('//*[@type="XCUIElementTypeTextField"]/following-sibling::XCUIElementTypeOther')
+    }
+
+    get beneficiaryName(){
+        return $('//XCUIElementTypeStaticText[contains(@name,"MOHAMMAD")]')
+    }
+
+    get beneficiaryDetails(){
+        return $('~Beneficiary Details')
+    }
+
+    get sendMoneyBtn(){
+        return $('~Send Money')
+    }
+
+    get paymentMethodScreen(){
+        return $('~Select Payment Method')
+    }
+
+    get paymentMethod(){
+        return $('~Card (WorldPay)')
+    }
+
+    get completeTrasactionScreen(){
+        return $('~Complete Transaction')
+    }
+
+    get currenyDropdown(){
+        return $('~EUR')
+    }
+
+    get selectCurrency(){
+        return $('~USD')
+    }
+
+    get amountField(){
+        return $('(//XCUIElementTypeTextField[@name="Amount"])[1]')
+    }
+
+    get sendNowBtn(){
+        return $('~Send Now')
+    }
+
+    get confirmTrasactionScreen(){
+        return $('~Confirm Transaction')
+    }
+
+    get confirmBtn(){
+        return $('~Confirm')
+    }
+
+
        /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -212,6 +273,82 @@ class ios_WalletPage {
     async verifyInsufficientFundsMsg(){
         await(await this.insufficientErr).waitForDisplayed();
         return  await(await this.insufficientErr).isDisplayed();
+    }
+
+    async clickSendTowallet(){
+        await (await this.sendToWallet).click();
+    }
+
+    async verifysendToWalletScreen(){
+        return await (await this.sendToWallet).isDisplayed();
+    }
+
+    async enterEmailInSearchField(){
+        await (await this.searchField).click();
+        await (await this.searchField).setValue("usman@easyss.net");
+        await (await this.searchButton).click();
+
+    }
+
+    async verifyBeneficiaryDisplyed(){
+        await (await this.beneficiaryName).waitForDisplayed({timeout:30000})
+        return await (await this.beneficiaryName).isDisplayed();
+    }
+
+    async selectBeneficiary(){
+        await (await this.beneficiaryName).click();
+    }
+    
+    async verifyBeneficiaryDetailsScreenDisply(){
+        await (await this.beneficiaryDetails).waitForDisplayed({timeout:30000})
+        return await (await this.beneficiaryDetails).isDisplayed();
+    }
+
+    async clickSendMoneyBtn(){
+        await (await this.sendMoneyBtn).click();
+    }
+
+    async paymentMethodScreenDisplay(){
+        return await (await this.paymentMethodScreen).isDisplayed(); 
+    }
+
+    async selectPaymentOption(){
+        await (await this.paymentMethod).click();
+    }
+
+    async completeTrasactionScreenDisplay(){
+        await (await this.completeTrasactionScreen).waitForDisplayed({timeout:30000});
+        return await (await this.completeTrasactionScreen).isDisplayed(); 
+    }
+
+    async selectReceiveCurrency(){
+        await (await this.currenyDropdown).click();
+        await (await this.selectCurrency).click();
+    }
+
+    async enterAmountToTransfer(){
+        await (await this.amountField).click();
+        await (await this.amountField).setValue("2");
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+          }
+          console.log('Start');
+          // Sleep for 2 seconds (2000 milliseconds)
+          await sleep(10000);
+          console.log('End');
+    }
+
+    async clickSendNowBtn(){
+        await (await this.sendNowBtn).click();
+    }
+
+    async confirmTransactionScreenDisplay(){
+        await (await this.confirmTrasactionScreen).waitForDisplayed({timeout:30000});
+        return await (await this.confirmTrasactionScreen).isDisplayed(); 
+    }
+
+    async clickConfirmBtn(){
+        await (await this.confirmBtn).click();
     }
 }
 

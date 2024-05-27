@@ -404,12 +404,8 @@ class BeneficiaryPage {
 }
 
     async paymentMethodScreenDisplay(){
-        try {
-            await (await this.paymentMethodScreen).waitForDisplayed();
-            return await (await this.paymentMethodScreen).isDisplayed();
-        } catch (error) {
-            console.error("Error occurred while verifying text:", error);
-      }
+        await (await this.paymentMethodScreen).waitForDisplayed({timeout:30000});
+       return await (await this.paymentMethodScreen).isDisplayed();
     }
 
     async selectPaymentMethod(){

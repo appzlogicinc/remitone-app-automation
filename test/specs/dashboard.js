@@ -13,7 +13,6 @@ describe('Dashboard page', () => {
         chaiExpect(await dashboardPage.verifyCountryDisplayOnDahboard()).to.be.true;
         await BeneficiaryPage.enterAmountToTransfer();
         chaiExpect(await dashboardPage.verifyExchangeRateDisplay()).to.be.true;
-      //  chaiExpect(await dashboardPage.verifyTransferFee()).to.be.true;  
         await dashboardPage.ClickSendNowBtn();
         chaiExpect(await BeneficiaryPage.verifyBeneficiaryScreenDisply()).to.be.true;
         await BeneficiaryPage.clickOnBeneficiary();

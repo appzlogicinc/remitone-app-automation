@@ -151,8 +151,7 @@ class WalletPage {
       }
 
       get searchButton(){
-        const selector = 'new UiSelector().className("android.view.View")';
-        return $$(`android=${selector}`); 
+        return $(`//*[@class='android.widget.EditText']/android.view.View`); 
       }
 
       get beneficiary(){
@@ -161,13 +160,12 @@ class WalletPage {
       }
 
       get AmountField(){
-        const selector = 'new UiSelector().textContains("Amount")'
+        const selector = 'new UiSelector().className("android.widget.EditText")'
         return $$(`android=${selector}`) 
       }
 
        get senNowBtn(){
-        const selector = 'new UiSelector().description("CreateWalletTransactionRoute, Send Now")'
-        return $(`android=${selector}`) 
+        return $(`~Send Now`) 
        }
 
        get makePayment(){
@@ -295,14 +293,13 @@ class WalletPage {
     }
     
     async enterEmailInSearchField(){
-      (await this.searchField).click();
-      this.searchField.setValue("usman@easyss.net");
-      this.searchButton[2].waitForClickable();
-      this.searchButton[2].click();
+      await (await this.searchField).click();
+      await (await this.searchField).setValue("usman@easyss.net");
+      await (await this.searchButton).click();
     }
 
     async verifyBeneficiaryDisplyed(){
-      await (await this.beneficiary).waitForDisplayed();
+      await (await this.beneficiary).waitForDisplayed({timeout:30000});
       return  (await this.beneficiary).isDisplayed();
     }
 
@@ -311,8 +308,8 @@ class WalletPage {
     }
 
     async enterAmountToTransfer(){
-      await this.AmountField[1].click();
-      await this.AmountField[1].setValue("2");
+      await this.AmountField[0].click();
+      await this.AmountField[0].setValue("2");
       async function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
       }
