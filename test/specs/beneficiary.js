@@ -2,6 +2,10 @@ import { expect } from '@wdio/globals'
 import BeneficiaryPage from '../pageobjects/beneficiary.page.js'
 import LoginPage from '../pageobjects/login.page.js'
 import { expect as chaiExpect, should } from 'chai';
+import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
+
+const argv = yargs(hideBin(process.argv)).argv;
 
 beforeEach(async () => {
        console.log('Launching the app');

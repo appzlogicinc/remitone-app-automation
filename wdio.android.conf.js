@@ -1,3 +1,7 @@
+import yargs  from 'yargs';
+import { hideBin } from 'yargs/helpers';
+
+const argv = yargs(hideBin(process.argv)).argv;
 export const config = {
 
     // ...
@@ -14,12 +18,13 @@ export const config = {
                 buildName: "The static build job name goes here e.g. Nightly regression"
             },
          //    browserstackLocal: true,
-            app: "bs://75b02ec3e3c3c47bf312d9924d491d2b96de2a16"
+            app: argv.latest_build
         }]
     ],
     hostname: 'hub.browserstack.com',
     coloredLogs: true,
     screenshotPath: './errorShots/',
+    
  //
  // ====================
  // Runner Configuration
