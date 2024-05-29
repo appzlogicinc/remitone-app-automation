@@ -89,8 +89,8 @@ class LoginPage {
          await this.inputUsername[0].setValue(username);
          await this.inputPassword[1].click();
          await this.inputPassword[1].setValue(password);
-         (await this.btnSubmit).waitForClickable();
-        await this.btnSubmit.click();
+         browser.hideKeyboard();
+         await (await this.btnSubmit).click();
     }
 
      async verifyUserLoggedin() { 

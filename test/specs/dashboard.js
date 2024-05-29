@@ -15,7 +15,7 @@ describe('Dashboard page', () => {
         chaiExpect(await dashboardPage.verifyExchangeRateDisplay()).to.be.true;
         await dashboardPage.ClickSendNowBtn();
         chaiExpect(await BeneficiaryPage.verifyBeneficiaryScreenDisply()).to.be.true;
-        await BeneficiaryPage.clickOnBeneficiary();
+        await dashboardPage.clickOnBeneficiary();
         chaiExpect(await BeneficiaryPage.verifyTransactionTypeScreenDisply()).to.be.true;
         await BeneficiaryPage.selectCardTransferTransactionType();
         chaiExpect(await BeneficiaryPage.verifyCardTransferScreenDisply()).to.be.true;

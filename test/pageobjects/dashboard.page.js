@@ -24,6 +24,11 @@ class dashboardPage {
         return $(`android=${selector}`);
     }
 
+    get beneficiaryName(){
+        const selector = 'new UiSelector().descriptionContains("REMITONE")'
+        return $(`android=${selector}`)
+    }
+
     get transferFee(){
       return $('//android.view.View[@content-desc="5.330 GBP"]')
     }
@@ -49,6 +54,10 @@ class dashboardPage {
 
     async ClickSendNowBtn(){
         await this.dashboardElement.click();
+    }
+
+    async clickOnBeneficiary(){
+        await this.beneficiaryName.click();
     }
 
     async verifyExchangeRateDisplay(){
