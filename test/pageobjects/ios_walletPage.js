@@ -146,10 +146,6 @@ class ios_WalletPage {
         return $('~EUR')
     }
 
-    get selectCurrency(){
-        return $('~USD')
-    }
-
     get amountField(){
         return $('(//XCUIElementTypeTextField[@name="Amount"])[1]')
     }
@@ -323,7 +319,7 @@ class ios_WalletPage {
 
     async selectReceiveCurrency(){
         await (await this.currenyDropdown).click();
-        await (await this.selectCurrency).click();
+        await (await this.clickCurrency).click();
     }
 
     async enterAmountToTransfer(){

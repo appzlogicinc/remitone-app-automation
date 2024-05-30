@@ -58,6 +58,10 @@ class iosDashboardPage {
         return $('(//*[@type="XCUIElementTypeStaticText"])[1]')
     }
 
+    get confirmBtn(){
+        return $('~Confirm')
+    }
+
     get transactionTypeScreen(){  
     // const selector = `label == "Select Transaction Type"`
     // return $(`-ios predicate string:${selector}`)
@@ -227,6 +231,10 @@ class iosDashboardPage {
     async worldPayScreenDisplayed(){
         await (await this.worldPayScreen).waitForDisplayed({timeout:30000});
        return await (await this.worldPayScreen).isDisplayed();
+    }
+
+    async clickConfirmBtn(){
+        await (await this.confirmBtn).click(); 
     }
 
 }

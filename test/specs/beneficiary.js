@@ -85,7 +85,3 @@ describe('Benificiary page', () => {
        chaiExpect(await BeneficiaryPage.makePaymentScreenDisplay()).to.be.true;
    }) 
 });
-
-
-
-

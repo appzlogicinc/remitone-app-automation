@@ -1,4 +1,4 @@
 export const validCredentials = {
-    username: 'mukul@appzlogic.com',
-    password: 'HealthyBoy123456@#',
+    username: 'jerry-1@yopmail.com',
+    password: 'Appzlogic@123',
   };

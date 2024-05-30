@@ -322,30 +322,8 @@ class BeneficiaryPage {
         await (await this.passport).click();
     }
 
-     async enterBeneficiaryDetails(){
-        const { Firstname,Lastname,mobileNo,address,city,state,postcode } = beneficiaryDetails;
-        await this.inputFirstname.click();
-        await this.inputFirstname.setValue(Firstname);
-        browser.hideKeyboard();
-        const scrollableContainer = $('android=new UiScrollable(new UiSelector().scrollable(true))');
-        scrollableContainer.scroll('down');
-        await this.inputLastname.click();
-        await this.inputLastname.setValue(Lastname);
-
-  
-        await this.enterCity.click();
-        await this.enterCity.setValue(city);
-        browser.hideKeyboard();
-        scrollableContainer.scroll('down');
-        // await this.enterState.click();
-        // await this.enterState.setValue(state);
-        // browser.hideKeyboard();
-        // scrollableContainer.scroll('down');
-        
-    }
-
     async verifyBeneficiaryAdded()
-{ 
+    { 
             (await this.addBeneficiaryBtn).waitForDisplayed({timeout:30000});
             console.log(this.uniqueFirstName);
             await (await this.addedBeneficiary).waitForDisplayed({timeout:30000});
@@ -357,11 +335,12 @@ class BeneficiaryPage {
     }
 
     async verifyBeneficiaryDetailsScreenDisply(){
+        await (await this.beneficiaryDetailsScreen).waitForDisplayed({timeout:30000});
         return await this.beneficiaryDetailsScreen.isDisplayed();
     }
     
     async clickSendMoneyBtn(){
-        await this.SendMoneyBtn.click();
+        await (await this.SendMoneyBtn).click();
     }
 
     async verifyTransactionTypeScreenDisply(){
@@ -393,15 +372,11 @@ class BeneficiaryPage {
     }
 
     async verifyEditBeneficiaryScreen(){
-        (await this.editBeneficiaryScreen).waitForDisplayed({timeout:30000});
-        return await this.editBeneficiaryScreen.isDisplayed(); 
+        await (await this.editBeneficiaryScreen).waitForDisplayed({timeout:30000});
+        return await (await this.editBeneficiaryScreen).isDisplayed(); 
     }
 
     async editDetails(){
-        // const scrollableContainer = $('android=new UiScrollable(new UiSelector().scrollable(true))');
-        // scrollableContainer.scroll('down');
-        // await this.inputMobileno.click();
-        // await this.inputMobileno.setValue("1234567890");
         function generateRandomMobileNumber() {
             let randomNumber = '';
             for (let i = 0; i < 10; i++) {
@@ -410,8 +385,8 @@ class BeneficiaryPage {
             return randomNumber;
           }
           const randomMobileNumber = generateRandomMobileNumber();
-          await (await this.inputMobileno[3]).click();
-          await this.inputMobileno[3].setValue(randomMobileNumber);
+          await (await this.inputMobileno).click();
+          await this.inputMobileno.setValue(randomMobileNumber);
     }
 
     async clickSaveBtn(){
@@ -473,7 +448,8 @@ class BeneficiaryPage {
     }
 
     async transactionCreationMsgDisplayed(){
-       return await this.transactionCreationMsg.isDisplayed();
+        await(await this.transactionCreationMsg).waitForDisplayed({timeout:30000});
+       return await(await this.transactionCreationMsg).isDisplayed();
     }
 
     async transactionDetailScreenDisplay(){
