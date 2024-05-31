@@ -19,33 +19,33 @@ afterEach(async () => {
     await driver.closeApp();
 });
 
-// describe('Load Wallet', () => {
-//     it('Verify Load your wallet functionality', async () => {
-//        await ios_WalletPage.clickLoadWalletButton();
-//        chaiExpect(await ios_WalletPage.verifyLoadWalletScreen()).to.be.true;
-//        await ios_WalletPage.enterRequiredFields();
-//        chaiExpect(await ios_WalletPage.verifyInfoText()).to.be.true;
-//        chaiExpect(await ios_WalletPage.verifypaymentinfotext()).to.be.true;
-//        await ios_WalletPage.clickLoadWalletBtn();
-//        chaiExpect(await ios_WalletPage.verifyReviewScreen()).to.be.true;
-//        await ios_WalletPage.clickConfirmLoadWalletBtn();
-//        chaiExpect(await ios_WalletPage.verifyLoadWalletConfirmScreen()).to.be.true;
-//        await ios_WalletPage.clickMakePaymentBtn();
-//        chaiExpect(await ios_WalletPage.verifyMakePaymentScreen()).to.be.true; 
-//        chaiExpect(await ios_WalletPage.verifyPaymentMethod()).to.be.true;
-//     })
-// });
+describe('Load Wallet', () => {
+    it('Verify Load your wallet functionality', async () => {
+       await ios_WalletPage.clickLoadWalletButton();
+       chaiExpect(await ios_WalletPage.verifyLoadWalletScreen()).to.be.true;
+       await ios_WalletPage.enterRequiredFields();
+       chaiExpect(await ios_WalletPage.verifyInfoText()).to.be.true;
+       chaiExpect(await ios_WalletPage.verifypaymentinfotext()).to.be.true;
+       await ios_WalletPage.clickLoadWalletBtn();
+       chaiExpect(await ios_WalletPage.verifyReviewScreen()).to.be.true;
+       await ios_WalletPage.clickConfirmLoadWalletBtn();
+       chaiExpect(await ios_WalletPage.verifyLoadWalletConfirmScreen()).to.be.true;
+       await ios_WalletPage.clickMakePaymentBtn();
+       chaiExpect(await ios_WalletPage.verifyMakePaymentScreen()).to.be.true; 
+       chaiExpect(await ios_WalletPage.verifyPaymentMethod()).to.be.true;
+    })
+});
 
-    // describe('Move funds', () => {
-    //     it('Verify move funds functionality', async () => {
-    //        await ios_WalletPage.clickMoveButton();
-    //        chaiExpect(await ios_WalletPage.verifyMoveFundsScreen()).to.be.true;
-    //        chaiExpect(await ios_WalletPage.verifyMoveFundInfoText()).to.be.true;
-    //        await ios_WalletPage.enterCurrencyDetails();
-    //        await ios_WalletPage.clickMoveFundsbutton();
-    //        chaiExpect(await ios_WalletPage.verifyInsufficientFundsMsg()).to.be.true;
-    //     })
-    // });
+    describe('Move funds', () => {
+        it('Verify move funds functionality', async () => {
+           await ios_WalletPage.clickMoveButton();
+           chaiExpect(await ios_WalletPage.verifyMoveFundsScreen()).to.be.true;
+           chaiExpect(await ios_WalletPage.verifyMoveFundInfoText()).to.be.true;
+           await ios_WalletPage.enterCurrencyDetails();
+           await ios_WalletPage.clickMoveFundsbutton();
+           chaiExpect(await ios_WalletPage.verifyInsufficientFundsMsg()).to.be.true;
+        })
+    });
 
     describe('Send to Wallet', () => {
         it('Verify send to wallet functionality', async () => {
