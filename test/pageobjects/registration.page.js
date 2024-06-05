@@ -144,10 +144,10 @@ class RegistrationPage {
     }
 
     async enterSecurityPin(){
-        (await this.setSecurityPin[1]).click(); 
-        (await this.setSecurityPin[2]).click(); 
-        (await this.setSecurityPin[3]).click(); 
-        (await this.setSecurityPin[4]).click(); 
+       await (await this.setSecurityPin[1]).click(); 
+       await (await this.setSecurityPin[2]).click(); 
+       await (await this.setSecurityPin[3]).click(); 
+       await (await this.setSecurityPin[4]).click(); 
     }
     
     async verifyRegistrationOptionsScreenDisplayed(){

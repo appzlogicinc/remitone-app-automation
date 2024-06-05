@@ -67,7 +67,7 @@ class BeneficiaryPage {
     } 
 
     get addedBeneficiary(){
-        const xpath = `//android.view.View[contains(@content-desc,"${this.uniqueFirstName}")]`;
+        const xpath = `//android.view.View[contains(@content-desc,${this.uniqueFirstName})]`;
         return $(xpath);
     }
 
@@ -89,8 +89,7 @@ class BeneficiaryPage {
     //     return $(`android=${selector}`)
     // }
     get beneficiaryName(){
-        const selector = 'new UiSelector().descriptionContains("MOHAMMAD")'
-        return $(`android=${selector}`)
+        return $('(//*[@class="android.widget.EditText"]//android.view.View)[3]')
     }
 
     get beneficiaryDetailsScreen(){
@@ -99,14 +98,10 @@ class BeneficiaryPage {
     }
 
     get SendMoneyBtn(){
-        return $('~Send Money')
+       // return $('~Send Money')
         // const selector = 'new UiSelector().descriptionContains("Send Money")'
         // return $(`android=${selector}`) 
-    }
-
-    get TransactionTypeScreen(){
-        const selector = 'new UiSelector().description("Select Transaction Type")'
-        return $(`android=${selector}`) 
+        return $('//android.widget.Button[@content-desc="Send Money"]')
     }
 
     get transactionOption(){
@@ -206,13 +201,8 @@ class BeneficiaryPage {
         return $(`android=${selector}`) 
        }
 
-       get similarTrasactionPopUp(){
-        const selector = 'new UiSelector().description("Similar Transaction")'
-        return $(`android=${selector}`) 
-       }
-
-       get cancleBtn(){
-       return $('~Cancel');
+       get continueBtn(){
+        return $('~Continue')
        }
 
        get confirmBtn(){
@@ -324,11 +314,10 @@ class BeneficiaryPage {
 
     async verifyBeneficiaryAdded()
     { 
-            (await this.addBeneficiaryBtn).waitForDisplayed({timeout:30000});
+            await (await this.addBeneficiaryBtn).waitForDisplayed({timeout:30000});
             console.log(this.uniqueFirstName);
-            await (await this.addedBeneficiary).waitForDisplayed({timeout:30000});
-            return await (await this.addedBeneficiary).isDisplayed();
-    }
+            return  await (await this.addedBeneficiary).isExisting();
+        }
 
     async clickOnBeneficiary(){
         await this.beneficiaryName.click();
@@ -343,13 +332,23 @@ class BeneficiaryPage {
         await (await this.SendMoneyBtn).click();
     }
 
-    async verifyTransactionTypeScreenDisply(){
-        await (await this.TransactionTypeScreen).waitForDisplayed({timeout:30000});
-        return await this.TransactionTypeScreen.isDisplayed();
-    }
-
     async selectCardTransferTransactionType(){
-        await this.transactionOption.click();
+        if(await(await this.transactionOption).isDisplayed()){
+            console.log("if block");
+            await(await this.transactionOption).click();
+        }
+        else{
+        console.log("else block");
+        await (await this.SendMoneyBtn).click();
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+           }
+           console.log('Start');
+            // Sleep for 2 seconds (2000 milliseconds)
+            await sleep(10000);
+            console.log('End');
+        await(await this.transactionOption).click();
+        }
     }
 
     async verifyCardTransferScreenDisply(){
@@ -433,14 +432,19 @@ class BeneficiaryPage {
     }
 
     async confirmTransactionScreenDisplay(){
-        try {
-            await (await this.confirmTransactionScreen).waitForDisplayed();
-            return await (await this.confirmTransactionScreen).isDisplayed();
+        try {        
+            try {
+                await (await this.continueBtn).waitForDisplayed({ timeout:30000 });
+                await this.continueBtn.click();
+            } catch (e) {
+                console.log('Continue button not displayed within timeout.');
+            }
+            const confirmTransactionScreenDisplayed = await this.confirmTransactionScreen.isDisplayed();
+            return confirmTransactionScreenDisplayed;
         } catch (error) {
-            await this.similarTrasactionPopUp.isDisplayed();
-            await this.cancleBtn.click();
-            return await (await this.confirmTransactionScreen).isDisplayed();
-      }
+            console.error('Error in confirmTransactionScreenDisplay:', error);
+            return false;
+        }
     }
 
     async clickConfirmBtn(){

@@ -63,7 +63,8 @@ get beneficiaryDetailScreen(){
 }
 
 get editBtn(){
-  return $('//XCUIElementTypeOther[@name="Beneficiary Details"]/following-sibling::XCUIElementTypeButton')
+  return $('//XCUIElementTypeOther[contains(@name,"Beneficiary Details")]/following-sibling::XCUIElementTypeButton')
+ //return $('//*[@type=XCUIElementTypeButton"][2]')
 }
 
 get editBeneficiaryScreen(){
@@ -75,7 +76,8 @@ return $('~Beneficiary Successfully Updated !')
 }
 
 get sendMoneyBtn(){
-  return $('~Send Money')
+  //return $('~Send Money')
+  return $('//XCUIElementTypeButton[@name="Send Money"]')
 }
 
 get amountField(){
@@ -174,11 +176,18 @@ async verifyBeneficiaryAdded(){
   }
 
   async clickEditBeneficiaryBtn(){
-     await (await this.editBtn).click();
+    await (await this.editBtn).click();
   }
 
   async verifyEditBeneficiaryScreen(){
-    await (await this.editBeneficiaryScreen).waitForDisplayed({timeout:30000});
+    if(await (await this.editBeneficiaryScreen).isDisplayed()){
+      console.log("if block");
+      return true;
+    }
+    else
+    console.log("else block");
+    await (await this.editBtn).click();
+    await (await this.editBeneficiaryScreen).waitForDisplayed({timeout:30000})
     return await (await this.editBeneficiaryScreen).isDisplayed();
   }
 

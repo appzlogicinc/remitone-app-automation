@@ -152,18 +152,18 @@ class iosRegistrationPage {
     }
 
     async enterSecurityPin(){
-        (await this.setSecurityPin[1]).click(); 
-        (await this.setSecurityPin[2]).click(); 
-        (await this.setSecurityPin[3]).click(); 
-        (await this.setSecurityPin[4]).click(); 
+        await(await this.setSecurityPin[1]).click(); 
+        await(await this.setSecurityPin[2]).click(); 
+        await(await this.setSecurityPin[3]).click(); 
+        await(await this.setSecurityPin[4]).click(); 
     }
     
     async verifyRegistrationOptionsScreenDisplayed(){
-        return (await this.registrationOptionScreen).isDisplayed();
+        return await(await this.registrationOptionScreen).isDisplayed();
     }
 
     async verifySignUpScreenDisplayed(){
-        return await this.signUpScreen.isDisplayed();
+        return await(await this.signUpScreen).isDisplayed();
     }
 
     async enterEmail(){

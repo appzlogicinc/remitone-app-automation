@@ -68,7 +68,14 @@ class iosLoginPage {
       return $('~Send Now');
         // const selector = `type == 'XCUIElementTypeButton' && name CONTAINS 'Send Now'`
         // return $(`-ios predicate string:${selector}`)
+    }
 
+    get securityScreen(){
+     return $('~Login with Security Pin')
+    }
+
+    get setSecurityPin(){
+      return $$('//*[@type="XCUIElementTypeButton"]')
     }
   
     /**
@@ -77,14 +84,14 @@ class iosLoginPage {
      */
 
     async clickLoginBtn(){
-      (await this.cameraAccess).click();
+      await  (await this.cameraAccess).click();
         await this.ignoreBtn.click();
-       await this.loginBtn.click();
+        await this.loginBtn.click();
     }
 
     async login () {
         const { username, password } = validCredentials;
-        (await this.inputUsername).waitForDisplayed();
+        (await this.inputUsername).waitForDisplayed({timeout:40000});
            await this.inputUsername.click()
            await this.inputUsername.setValue(username);
            await this.inputPassword.click();

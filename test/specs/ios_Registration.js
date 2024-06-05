@@ -1,8 +1,6 @@
 import { expect } from '@wdio/globals'
 import iosRegistrationPage from '../pageobjects/ios_Registration.Page.js'
 import { expect as chaiExpect, should } from 'chai';
-import registrationPage from '../pageobjects/registration.page.js';
-
 
 describe('Registration page', () => {
     it('Registerting a new user', async () => {
