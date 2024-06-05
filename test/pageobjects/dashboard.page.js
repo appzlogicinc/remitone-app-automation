@@ -91,8 +91,9 @@ class dashboardPage {
         await (await this.profileBtn).click();
     }
 
-    async verifyProfileScreen(){
-       return await(await this.profileScreen).click();
+    async verifyProfileScreen(){ 
+        await (await this.profileScreen).waitForDisplayed({timeout:30000});
+       return await(await this.profileScreen).isDisplayed();
     }
 
     async clickEditProfileBtn(){
@@ -100,12 +101,12 @@ class dashboardPage {
     }
 
     async verifyEditProfileScreen(){
-        return await (await this.editProfileScreen).click();
+        return await (await this.editProfileScreen).isDisplayed();
      }
 
      async verifyUpdatedProfileMessage(){
         await (await this.updatedProfileMsg).waitForDisplayed({timeout:30000});
-        return await (await this.updatedProfileMsg).click();
+        return await (await this.updatedProfileMsg).isDisplayed();
      }
 
 }

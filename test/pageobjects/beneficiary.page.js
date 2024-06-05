@@ -35,6 +35,11 @@ class BeneficiaryPage {
         return $('//*[@class="android.widget.EditText"][4]')
     }
 
+    get profileMobileNumberfield(){
+        return $('//android.view.View[@content-desc="CONTACT DETAILS"]/following-sibling::android.widget.EditText[1]')
+
+    }
+
     get inputAddress (){
         return $('//android.view.View[@content-desc="Contact Details"]/following-sibling::android.widget.EditText[3]')
     }
@@ -474,6 +479,19 @@ class BeneficiaryPage {
     
     async enterBeneficiaryName(){
         await this.searchBeneficioaryField.click();
+    }
+
+    async editDetailsInProfile(){
+        function generateRandomMobileNumber() {
+            let randomNumber = '';
+            for (let i = 0; i < 10; i++) {
+              randomNumber += Math.floor(Math.random() * 10); // Generate a random digit (0-9)
+            }
+            return randomNumber;
+          }
+          const randomMobileNumber = generateRandomMobileNumber();
+          await (await this.profileMobileNumberfield).click();
+          await this.profileMobileNumberfield.setValue(randomMobileNumber);
     }
 }
 
