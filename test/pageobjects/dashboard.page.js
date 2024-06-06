@@ -24,8 +24,30 @@ class dashboardPage {
         return $(`android=${selector}`);
     }
 
+    get beneficiaryName(){
+        return $('(//*[@class="android.widget.EditText"]//android.view.View)[3]')
+        // const selector = 'new UiSelector().descriptionContains("REMITONE")'
+        // return $(`android=${selector}`)
+    }
+
     get transferFee(){
       return $('//android.view.View[@content-desc="5.330 GBP"]')
+    }
+
+    get profileBtn(){
+        return $('//android.widget.ImageView[contains(@content-desc,"Profile")]')
+    }
+
+    get profileScreen(){
+        return $('~Personal Details')
+    }
+
+    get editProfileBtn(){
+        return $('(//*[@class="android.view.View"]/android.widget.ImageView[2])[1]')
+    }
+
+    get editProfileScreen(){
+        return $('~Edit Profile')
     }
 
     /**
@@ -51,6 +73,10 @@ class dashboardPage {
         await this.dashboardElement.click();
     }
 
+    async clickOnBeneficiary(){
+        await this.beneficiaryName.click();
+    }
+
     async verifyExchangeRateDisplay(){
         (await this.exchangeRate).waitForDisplayed();
         return this.exchangeRate.isDisplayed();
@@ -60,6 +86,29 @@ class dashboardPage {
         (await this.transferFee).waitForDisplayed();
         return this.transferFee.isDisplayed();
     }
+
+    async clickProfileBtn(){
+        await (await this.profileBtn).click();
+    }
+
+    async verifyProfileScreen(){ 
+        await (await this.profileScreen).waitForDisplayed({timeout:30000});
+       return await(await this.profileScreen).isDisplayed();
+    }
+
+    async clickEditProfileBtn(){
+       await (await this.editProfileBtn).click();
+    }
+
+    async verifyEditProfileScreen(){
+        return await (await this.editProfileScreen).isDisplayed();
+     }
+
+     async verifyUpdatedProfileMessage(){
+        await (await this.updatedProfileMsg).waitForDisplayed({timeout:30000});
+        return await (await this.updatedProfileMsg).isDisplayed();
+     }
+
 }
 
 

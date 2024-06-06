@@ -55,7 +55,11 @@ class iosDashboardPage {
     }
 
     get beneficiaryName(){
-        return $('(//*[@type="XCUIElementTypeStaticText"])[1]')
+        return $('(//*[contains(@type,"XCUIElementTypeStaticText")])[1]')
+    }
+
+    get confirmBtn(){
+        return $('~Confirm')
     }
 
     get transactionTypeScreen(){  
@@ -69,6 +73,11 @@ class iosDashboardPage {
 
     get cardTransferOption(){
         return $('~Card Transfer')
+    }
+    
+    get sendMoneyBtn(){
+        //return $('~Send Money')
+        return $('//XCUIElementTypeButton[@name="Send Money"]')
     }
 
      get cardTransferScreen(){
@@ -148,7 +157,8 @@ class iosDashboardPage {
     }
 
     async selectBeneficiary(){
-        await this.beneficiaryName.click();
+        await (await this.beneficiaryName).waitForDisplayed({timeout:30000});
+        await (await this.beneficiaryName).click();
     }
 
     async transactionTypeScreenDisplayed(){
@@ -156,7 +166,22 @@ class iosDashboardPage {
     }
 
     async clickCardTransfer(){
-        await this.cardTransferOption.click();
+        if(await(await this.cardTransferOption).isDisplayed()){
+            console.log("if block");
+            await (await this.cardTransferOption).click();
+        }
+        else{
+        console.log("else block");
+        await (await this.sendMoneyBtn).click();
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+           }
+           console.log('Start');
+            // Sleep for 2 seconds (2000 milliseconds)
+            await sleep(10000);
+            console.log('End');
+        await (await this.cardTransferOption).click();
+        }
     }
 
     async verifyCardTransferScreenDisply(){
@@ -227,6 +252,10 @@ class iosDashboardPage {
     async worldPayScreenDisplayed(){
         await (await this.worldPayScreen).waitForDisplayed({timeout:30000});
        return await (await this.worldPayScreen).isDisplayed();
+    }
+
+    async clickConfirmBtn(){
+        await (await this.confirmBtn).click(); 
     }
 
 }

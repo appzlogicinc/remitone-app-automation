@@ -6,6 +6,9 @@ import {beneficiaryDetails} from '../../testData/BeneficiaryData.js';
  * sub page containing specific selectors and methods for a specific page
  */
 class BeneficiaryPage {
+    constructor() {
+        this.uniqueFirstName = '';
+    }
 
     /**
      * define selectors using getter methods
@@ -21,23 +24,24 @@ class BeneficiaryPage {
     }
 
     get inputFirstname (){
-        const selector = 'new UiSelector().textContains("First Name")';
-        return $(`android=${selector}`)
+        return $('//android.view.View[@content-desc="Personal Details"]/following-sibling::android.widget.EditText[1]')
     }
 
     get inputLastname (){
-        const selector = 'new UiSelector().textContains("Last Name *")'
-        return $(`android=${selector}`)
+        return $('//android.view.View[@content-desc="Personal Details"]/following-sibling::android.widget.EditText[3]')
     }
 
     get inputMobileno (){
-        const selector = 'new UiSelector().textContains("Mobile Number")';
-        return $(`android=${selector}`)
+        return $('//*[@class="android.widget.EditText"][4]')
     }
 
-    get enterAddress (){
-        const selector = 'new UiSelector().textContains("Address 1")';
-        return $(`android=${selector}`)
+    get profileMobileNumberfield(){
+        return $('//android.view.View[@content-desc="CONTACT DETAILS"]/following-sibling::android.widget.EditText[1]')
+
+    }
+
+    get inputAddress (){
+        return $('//android.view.View[@content-desc="Contact Details"]/following-sibling::android.widget.EditText[3]')
     }
 
     get enterCity (){
@@ -51,39 +55,29 @@ class BeneficiaryPage {
     }
 
     get enterPostcode (){
-        const selector = 'new UiSelector().textContains("Postcode / Zipcode")';
-        return $(`android=${selector}`)
+        return $('//android.view.View[@content-desc="Contact Details"]/following-sibling::android.widget.EditText[6]')
+    }
+
+    get enterPostcodeField(){
+        return $('//android.view.View[@content-desc="ID Details"]/preceding-sibling::android.widget.EditText[1]')
     }
 
     get idType (){
-        const selector = 'new UiSelector().descriptionContains("Identification Type")';
-        return $(`android=${selector}`)
+       return $('//android.widget.ImageView[contains(@content-desc,"Identification Type ")]')
     }
 
     get passport (){
-        const selector= 'new UiSelector().descriptionContains("CHEQUEBOOK")';
+        const selector= 'new UiSelector().descriptionContains("PASSPORT")';
         return $(`android=${selector}`);
     } 
 
-    get saveBbutton (){
-        const selector = 'new UiSelector().description("CreateBeneficiaryRouteSave")'
-        return $(`android=${selector}`)
-    }
-
     get addedBeneficiary(){
-        const selector = 'new UiSelector().descriptionContains("OLIVE")'
-        return $(`android=${selector}`)
+        const xpath = `//android.view.View[contains(@content-desc,${this.uniqueFirstName})]`;
+        return $(xpath);
     }
 
-    get validationMsg(){
-        return  $('This beneficiary already exists.');
-
-        // const selector = 'new UiSelector().description("This beneficiary already exists.")'
-        // return $(`android=${selector}`)
-    }
-
-    get saveEditButton (){
-        return $('~EditBeneficiaryRouteSave');
+    get saveButton (){
+        return $('~Save');
     }
     
     get beneficiaryScreen(){
@@ -100,8 +94,7 @@ class BeneficiaryPage {
     //     return $(`android=${selector}`)
     // }
     get beneficiaryName(){
-        const selector = 'new UiSelector().descriptionContains("REMITONE")'
-        return $(`android=${selector}`)
+        return $('(//*[@class="android.widget.EditText"]//android.view.View)[3]')
     }
 
     get beneficiaryDetailsScreen(){
@@ -110,13 +103,10 @@ class BeneficiaryPage {
     }
 
     get SendMoneyBtn(){
-        const selector = 'new UiSelector().descriptionContains("Send Money")'
-        return $(`android=${selector}`) 
-    }
-
-    get TransactionTypeScreen(){
-        const selector = 'new UiSelector().description("Select Transaction Type")'
-        return $(`android=${selector}`) 
+       // return $('~Send Money')
+        // const selector = 'new UiSelector().descriptionContains("Send Money")'
+        // return $(`android=${selector}`) 
+        return $('//android.widget.Button[@content-desc="Send Money"]')
     }
 
     get transactionOption(){
@@ -160,14 +150,18 @@ class BeneficiaryPage {
     // return $(`android=${selector}`) 
    }
 
+   get editBeneficiaryScreen(){
+     return $('~Edit Beneficiary')
+   }
+
    get editBtn(){
-   const selector = 'new UiSelector().description("Edit beneficiary")'
-    return $(`android=${selector}`) 
+    return $('//android.view.View[@content-desc="Beneficiary Details"]/following-sibling::android.widget.ImageView')
+//    const selector = 'new UiSelector().description("Edit beneficiary")'
+//     return $(`android=${selector}`) 
    }
 
    get beneficiaryUpdatedMsg(){
-   return  $('//android.view.View[@content-desc="Beneficiary Successfully Updated !"]');
-   
+     return  $('//android.view.View[@content-desc="Beneficiary Successfully Updated !"]');
    }
 
    get paymentMethodScreen(){   
@@ -212,13 +206,8 @@ class BeneficiaryPage {
         return $(`android=${selector}`) 
        }
 
-       get similarTrasactionPopUp(){
-        const selector = 'new UiSelector().description("Similar Transaction")'
-        return $(`android=${selector}`) 
-       }
-
-       get cancleBtn(){
-       return $('~Cancel');
+       get continueBtn(){
+        return $('~Continue')
        }
 
        get confirmBtn(){
@@ -249,6 +238,10 @@ class BeneficiaryPage {
         return $('~Make Payment')
        }
 
+       get searchBeneficioaryField(){
+        return $('~Make Payment')
+       }
+
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -259,9 +252,8 @@ class BeneficiaryPage {
     }
 
     async verifyBeneficiaryScreenDisply(){
-        await this.addBeneficiaryBtn.waitForDisplayed();
-      return (await this.addBeneficiaryBtn).isDisplayed();       
- 
+        await (await this.addBeneficiaryBtn).waitForDisplayed();
+      return await (await this.addBeneficiaryBtn).isDisplayed();       
     }
     
     async clickAddbeneficiaryBtn(){
@@ -272,85 +264,96 @@ class BeneficiaryPage {
        return await this.addBeneficiaryScreen.isDisplayed();       
     }
 
-     async enterBeneficiaryDetails(){
-        const { Firstname,Lastname,mobileNo,address,city,state,postcode } = beneficiaryDetails;
+    async fetchRandomFirstName() {
+        try {
+            const response = await fetch('https://randomuser.me/api/');
+            const data = await response.json();
+            const firstName = data.results[0].name.first;
+            return firstName;
+        } catch (error) {
+            console.error('Error fetching random name:', error);
+            return 'DefaultFirstName'; // Fallback name in case of an error
+        }
+    }
+
+    async enterFirstName(){
+        browser.hideKeyboard();
         await this.inputFirstname.click();
-        await this.inputFirstname.setValue(Firstname);
+        const randomFirstName = await this.fetchRandomFirstName();
+        this.uniqueFirstName = `${randomFirstName}`.toUpperCase();
+        await this.inputFirstname.setValue(this.uniqueFirstName);
+        console.log(this.uniqueFirstName);
+        return this.uniqueFirstName;
+    }
+
+    async enterLastName(){
         browser.hideKeyboard();
-        const scrollableContainer = $('android=new UiScrollable(new UiSelector().scrollable(true))');
-        scrollableContainer.scroll('down');
         await this.inputLastname.click();
-        await this.inputLastname.setValue(Lastname);
+        await this.inputLastname.setValue("Test");
+
+    }
+
+    async enterMobileNo(){
         browser.hideKeyboard();
-        scrollableContainer.scroll('down');
         await this.inputMobileno.click();
-        await this.inputMobileno.setValue(mobileNo);
-        browser.hideKeyboard();
-        await this.enterAddress.click();
-        await this.enterAddress.setValue(address);
-        browser.hideKeyboard();
-        await this.enterCity.click();
-        await this.enterCity.setValue(city);
-        browser.hideKeyboard();
-        scrollableContainer.scroll('down');
-        // await this.enterState.click();
-        // await this.enterState.setValue(state);
-        // browser.hideKeyboard();
-        // scrollableContainer.scroll('down');
-        await this.enterPostcode.click();
-        await this.enterPostcode.setValue(postcode);
-        browser.hideKeyboard();
-        await this.idType.click();
-        await this.passport.click();
+        await this.inputMobileno.setValue("9876543210");
     }
 
-   async clickSaveBtn(){
-    await this.saveBbutton.click();
-   }
-
-    async verifyBeneficiaryAdded(){ 
-        try{
-            (await this.validationMsg).waitForDisplayed();
-            return this.validationMsg.isDisplayed();
-        }
-
-        catch (exception){
-            (await this.beneficiaryScreen).waitForDisplayed();
-            return this.addedBeneficiary.isDisplayed();
-        }
+    async enterAddress(){
+        browser.hideKeyboard();
+        await (await this.inputAddress).click();
+        await this.inputAddress.setValue("Block A, street 4");
     }
-     // return await this.beneficiaryName.isDisplayed();
 
-    //     const status = false;
-    //     const addedBeneficiary= beneficiaryDetails.Firstname;
+    async enterZipcode(){
+        browser.hideKeyboard();
+        await (await this.enterPostcode).click();
+        await this.enterPostcodeField.setValue("123456");
+    }
 
-    //     const expectedValue=addedBeneficiary.toUpperCase();
-    //     const getbeneficiaryName= (await this.beneficiaryName).getAttribute("content-desc");
-    //    if(expectedValue===getbeneficiaryName){
-    //     status=true;
-    //    }
-    //    return status;
-    // //     expect ((await ( (await this.beneficiaryName).getAttribute("content-desc").)) 
-    // }
+    async selectIdentificationType(){
+        browser.hideKeyboard();
+        await (await this.idType).click();
+        await (await this.passport).click();
+    }
+
+    async verifyBeneficiaryAdded()
+    { 
+            await (await this.addBeneficiaryBtn).waitForDisplayed({timeout:30000});
+            console.log(this.uniqueFirstName);
+            return  await (await this.addedBeneficiary).isExisting();
+        }
 
     async clickOnBeneficiary(){
         await this.beneficiaryName.click();
     }
 
     async verifyBeneficiaryDetailsScreenDisply(){
+        await (await this.beneficiaryDetailsScreen).waitForDisplayed({timeout:30000});
         return await this.beneficiaryDetailsScreen.isDisplayed();
     }
     
     async clickSendMoneyBtn(){
-        await this.SendMoneyBtn.click();
-    }
-
-    async verifyTransactionTypeScreenDisply(){
-        return await this.TransactionTypeScreen.isDisplayed();
+        await (await this.SendMoneyBtn).click();
     }
 
     async selectCardTransferTransactionType(){
-        await this.transactionOption.click();
+        if(await(await this.transactionOption).isDisplayed()){
+            console.log("if block");
+            await(await this.transactionOption).click();
+        }
+        else{
+        console.log("else block");
+        await (await this.SendMoneyBtn).click();
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+           }
+           console.log('Start');
+            // Sleep for 2 seconds (2000 milliseconds)
+            await sleep(10000);
+            console.log('End');
+        await(await this.transactionOption).click();
+        }
     }
 
     async verifyCardTransferScreenDisply(){
@@ -369,14 +372,15 @@ class BeneficiaryPage {
     }
 
     async clickEditBeneficiaryBtn(){
-        await this.editBtn.click();
+        await (await this.editBtn).click();
+    }
+
+    async verifyEditBeneficiaryScreen(){
+        await (await this.editBeneficiaryScreen).waitForDisplayed({timeout:30000});
+        return await (await this.editBeneficiaryScreen).isDisplayed(); 
     }
 
     async editDetails(){
-        // const scrollableContainer = $('android=new UiScrollable(new UiSelector().scrollable(true))');
-        // scrollableContainer.scroll('down');
-        // await this.inputMobileno.click();
-        // await this.inputMobileno.setValue("1234567890");
         function generateRandomMobileNumber() {
             let randomNumber = '';
             for (let i = 0; i < 10; i++) {
@@ -385,17 +389,17 @@ class BeneficiaryPage {
             return randomNumber;
           }
           const randomMobileNumber = generateRandomMobileNumber();
-          await this.inputMobileno.click();
+          await (await this.inputMobileno).click();
           await this.inputMobileno.setValue(randomMobileNumber);
     }
 
-    async clickSaveEditBtn(){
-        (await this.saveEditButton).click();
-       }
+    async clickSaveBtn(){
+        await (await this.saveButton).click();
+    }
        
     async verifyBeneficiaryUpdatedMsg(){
         try {
-            await (await this.beneficiaryUpdatedMsg).waitForDisplayed();
+            await (await this.beneficiaryUpdatedMsg).waitForDisplayed({timeout:30000});
             console.log("beneficiary test"+(await this.beneficiaryUpdatedMsg).getText());
             return await (await this.beneficiaryUpdatedMsg).isDisplayed();
         } catch (error) {
@@ -404,12 +408,8 @@ class BeneficiaryPage {
 }
 
     async paymentMethodScreenDisplay(){
-        try {
-            await (await this.paymentMethodScreen).waitForDisplayed();
-            return await (await this.paymentMethodScreen).isDisplayed();
-        } catch (error) {
-            console.error("Error occurred while verifying text:", error);
-      }
+        await (await this.paymentMethodScreen).waitForDisplayed({timeout:30000});
+       return await (await this.paymentMethodScreen).isDisplayed();
     }
 
     async selectPaymentMethod(){
@@ -437,14 +437,19 @@ class BeneficiaryPage {
     }
 
     async confirmTransactionScreenDisplay(){
-        try {
-            await (await this.confirmTransactionScreen).waitForDisplayed();
-            return await (await this.confirmTransactionScreen).isDisplayed();
+        try {        
+            try {
+                await (await this.continueBtn).waitForDisplayed({ timeout:30000 });
+                await this.continueBtn.click();
+            } catch (e) {
+                console.log('Continue button not displayed within timeout.');
+            }
+            const confirmTransactionScreenDisplayed = await this.confirmTransactionScreen.isDisplayed();
+            return confirmTransactionScreenDisplayed;
         } catch (error) {
-            await this.similarTrasactionPopUp.isDisplayed();
-            await this.cancleBtn.click();
-            return await (await this.confirmTransactionScreen).isDisplayed();
-      }
+            console.error('Error in confirmTransactionScreenDisplay:', error);
+            return false;
+        }
     }
 
     async clickConfirmBtn(){
@@ -452,7 +457,8 @@ class BeneficiaryPage {
     }
 
     async transactionCreationMsgDisplayed(){
-       return await this.transactionCreationMsg.isDisplayed();
+        await(await this.transactionCreationMsg).waitForDisplayed({timeout:30000});
+       return await(await this.transactionCreationMsg).isDisplayed();
     }
 
     async transactionDetailScreenDisplay(){
@@ -469,6 +475,23 @@ class BeneficiaryPage {
 
     async makePaymentScreenDisplay(){
         return this.makePaymentScreen.isDisplayed();
+    }
+    
+    async enterBeneficiaryName(){
+        await this.searchBeneficioaryField.click();
+    }
+
+    async editDetailsInProfile(){
+        function generateRandomMobileNumber() {
+            let randomNumber = '';
+            for (let i = 0; i < 10; i++) {
+              randomNumber += Math.floor(Math.random() * 10); // Generate a random digit (0-9)
+            }
+            return randomNumber;
+          }
+          const randomMobileNumber = generateRandomMobileNumber();
+          await (await this.profileMobileNumberfield).click();
+          await this.profileMobileNumberfield.setValue(randomMobileNumber);
     }
 }
 

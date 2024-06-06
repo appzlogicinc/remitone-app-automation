@@ -4,19 +4,17 @@ import Page from './page.js';
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class RegistrationPage {
+class iosRegistrationPage {
 
     /**
      * define selectors using getter methods
      */    
-    get denybtn(){
-        const selector = 'new UiSelector().textContains("Deny")';
-        return $(`android=${selector}`);
+    get cameraAccess(){
+        return $('~Don’t Allow')
       }
-    
-    get dismiss(){
-        const selector = 'new UiSelector().description("IGNORE")';
-        return $(`android=${selector}`);
+  
+      get ignoreBtn (){
+        return $('~IGNORE');
       }
 
     get signUp(){
@@ -24,7 +22,7 @@ class RegistrationPage {
     }
 
     getCountrySelector(countryName) {
-        const xpath = `//android.widget.ImageView[@content-desc="${countryName}"]`;
+        const xpath = `//XCUIElementTypeImage[@name="${countryName}"]`;
         return $(xpath);
     }
 
@@ -33,33 +31,46 @@ class RegistrationPage {
     }
 
     get securityScreen(){
-        const selector = 'new UiSelector().descriptionContains("Set Security Pin")';
-        return $(`android=${selector}`);
+        // const selector = 'new UiSelector().descriptionContains("Set Security Pin")';
+        // return $(`android=${selector}`);
        //   return $('//android.view.View[@content-desc="Set Security Pin"]');
-       // return $('~Set Security Pin')
+        return $('~Set Security Pin')
     }
 
     get setSecurityPin(){
-        return $$('//*[@class="android.widget.Button"]')
+        return $$('//*[@type="XCUIElementTypeButton"]')
     }
 
     get registrationOptionScreen(){
         return $('~Please select an option to use for registration')
     }
 
-    get inputTextfield(){
-        return $$('//*[@class="android.widget.EditText"]')
+    get signUpScreen(){
+        return $('//XCUIElementTypeStaticText[@name="Sign Up"]')
     }
 
-    get firstNameField(){
-        return $('//android.view.View[@content-desc="Personal Details"]/following-sibling::android.widget.EditText[1]')
+    get username(){
+        return $('//XCUIElementTypeTextField[contains(@name,"Username *")]')
     }
 
-    get lastnameField(){
-        return $('//android.view.View[@content-desc="Personal Details"]/following-sibling::android.widget.EditText[2]')
+    get password(){
+        return $('//XCUIElementTypeTextField[contains(@name,"Password *")]')
     }
+
+    get confirmPassword(){
+        return $('//XCUIElementTypeTextField[contains(@name,"Confirm Password *")]')
+    }
+
+    get firstName(){
+        return $('//XCUIElementTypeTextField[contains(@name,"First Name *")]')
+    }
+
+    get lastName(){
+        return $('//XCUIElementTypeTextField[contains(@name,"Last Name *")]')
+    }
+
     get dateOfBirthOption(){
-        return $('//android.view.View[@content-desc="Personal Details"]/following-sibling::android.widget.EditText[2]//following-sibling::android.view.View')
+        return $('~Date Of Birth *')
     }
 
     get selectDOB(){
@@ -67,36 +78,32 @@ class RegistrationPage {
     }
 
     get nationalityOption(){
-        return $('//*[contains(@content-desc,"Nationality")]')
+        return $('~Nationality *')
     }
 
     get country(){
-        return $('//*[@content-desc="AFGHANISTAN"]')
+        return $('~AFGHANISTAN')
     }
 
     get addressField(){
-        return $('//android.view.View[@content-desc="Contact Details"]//following-sibling::android.widget.EditText[1]')
+        return $('//XCUIElementTypeTextField[contains(@name,"Address 1 *")]')
     }
 
     get pincodeField(){
-        return $('//android.view.View[@content-desc="Contact Details"]//following-sibling::android.widget.EditText[5]')
-    }
-
-    get enterPincode(){
-        return $('//android.widget.ScrollView/android.widget.EditText[5]')
+        return $('//XCUIElementTypeTextField[contains(@name,"Postcode / Zipcode *")]')
     }
 
     get mobileField(){
-        return $('//android.view.View[@content-desc="Contact Details"]//following-sibling::android.widget.EditText[6]')
+        return $('//XCUIElementTypeTextField[contains(@name,"Mobile Number *")]')
     } 
-
-    get entermobile(){
-        return $('//android.widget.ScrollView/android.widget.EditText[6]')
-    }
 
     get checkboxField(){
-         return $('//android.widget.CheckBox')
+         return $('//*[@type="XCUIElementTypeSwitch"]')
     } 
+
+    get signUpConfirm(){
+        return $('//XCUIElementTypeButton[@name="Sign Up"]')
+    }
 
     get registrationSuccussful(){
         return $('~Successfully Registered')
@@ -107,8 +114,7 @@ class RegistrationPage {
     }
 
     get dashboardElement(){
-        const selector = 'new UiSelector().description("Send Now")';
-        return $(`android=${selector}`);
+        return $(`~Send Now`);
     }
 
 
@@ -118,10 +124,12 @@ class RegistrationPage {
      */
 
     async clickSignUpButton(){
-       await this.denybtn.click();
-       await this.dismiss.click();
-       await this.signUp.click();
+        (await this.cameraAccess).click();
+      if ((await this.ignoreBtn).isDisplayed()){
+        await this.ignoreBtn.click();
       }
+          await this.signUp.click();
+    }
 
       async selectCountry(countryName) {
         (await this.getCountrySelector(countryName)).waitForDisplayed({timeout:30000});
@@ -144,35 +152,35 @@ class RegistrationPage {
     }
 
     async enterSecurityPin(){
-       await (await this.setSecurityPin[1]).click(); 
-       await (await this.setSecurityPin[2]).click(); 
-       await (await this.setSecurityPin[3]).click(); 
-       await (await this.setSecurityPin[4]).click(); 
+        await(await this.setSecurityPin[1]).click(); 
+        await(await this.setSecurityPin[2]).click(); 
+        await(await this.setSecurityPin[3]).click(); 
+        await(await this.setSecurityPin[4]).click(); 
     }
     
     async verifyRegistrationOptionsScreenDisplayed(){
-        return (await this.registrationOptionScreen).isDisplayed();
+        return await(await this.registrationOptionScreen).isDisplayed();
     }
 
     async verifySignUpScreenDisplayed(){
-        return await this.signUp.isDisplayed();
+        return await(await this.signUpScreen).isDisplayed();
     }
 
     async enterEmail(){
         const randomString = Math.random().toString(36).substring(7); 
         const randomEmail= randomString + '@yopmail.com';
-      await this.inputTextfield[0].click();
-      await this.inputTextfield[0].setValue(randomEmail); 
+      await this.username.click();
+      await this.username.setValue(randomEmail); 
     }
 
     async enterPassword(){
-        await this.inputTextfield[1].click();
-        await this.inputTextfield[1].setValue("Appzlogic@123");
+        await this.password.click();
+        await this.password.setValue("Appzlogic@123");
     }
     
     async enterConfirmPassword(){
-      await this.inputTextfield[2].click();
-      await this.inputTextfield[2].setValue("Appzlogic@123");
+      await this.confirmPassword.click();
+      await this.confirmPassword.setValue("Appzlogic@123");
       browser.hideKeyboard();
     }
 
@@ -183,8 +191,8 @@ class RegistrationPage {
             const randomIndex = Math.floor(Math.random() * characters.length);
             randomFirstName += characters[randomIndex];
         }
-        await this.firstNameField.click(); 
-        await this.firstNameField.setValue(randomFirstName); 
+        await this.firstName.click(); 
+        await this.firstName.setValue(randomFirstName); 
     }
 
     async enterLastName(){
@@ -194,8 +202,8 @@ class RegistrationPage {
             const randomIndex = Math.floor(Math.random() * characters.length);
             randomLastName += characters[randomIndex];
         }
-        await this.lastnameField.click();
-        await this.lastnameField.setValue(randomLastName);  
+        await this.lastName.click();
+        await this.lastName.setValue(randomLastName);  
     }
 
     async selectDateOfBirth(){
@@ -218,13 +226,13 @@ class RegistrationPage {
 
     async enterPincodeinField(){
         await this.pincodeField.click();
-        await (await this.enterPincode).setValue("1234546");
+        await (await this.pincodeField).setValue("1234546");
         browser.hideKeyboard();
     }
 
     async enterMobileNumber(){
         await this.mobileField.click();
-        await (await this.entermobile).setValue("9876543210");
+        await (await this.mobileField).setValue("9876543210");
     }
 
     async selectCheckbox(){
@@ -233,7 +241,7 @@ class RegistrationPage {
     }
 
     async clickOnSignUpButton(){
-       await (await this.signUp).click();
+       await (await this.signUpConfirm).click();
     }
 
     async  verifyRegistrationSuccessfulPopupDisplayed(){
@@ -252,4 +260,4 @@ class RegistrationPage {
 
 }
     
-    export default new RegistrationPage();
+    export default new iosRegistrationPage();
