@@ -13,7 +13,8 @@ export const config = {
                    buildName: "The static build job name goes here e.g. Nightly regression"
                },
             //    browserstackLocal: true,
-               app: 'bs://92f2a654175dedfeaf3e4bc1c666e0322be55d3b'
+            //    app: 'bs://92f2a654175dedfeaf3e4bc1c666e0322be55d3b'
+            app: argv.latest_build
            }]
        ],
        hostname: 'hub.browserstack.com',
