@@ -17,7 +17,7 @@
   },
   "scripts": {
     "android-test": "wdio run ./wdio.android.conf.js",
-    "ios-test": "wdio run ./wdio.ios.conf.js --spec ./test/specs/ios_login.js "
+    "ios-test": "wdio run ./wdio.ios.conf.js"
   },
   "dependencies": {
     "node": "^21.2.0",
